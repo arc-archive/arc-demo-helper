@@ -1,0 +1,46 @@
+{
+  "name": "@advanced-rest-client/arc-demo-helper",
+  "version": "1.0.0",
+  "description": "An element to help create demo pages for ARC components",
+  "keywords": [
+    "web-components",
+    "advanced-rest-client",
+    "api-components",
+    "demo"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/advanced-rest-client/arc-demo-helper.git"
+  },
+  "license": "Apache-2.0",
+  "main": "src/arc-demo-helper.js",
+  "module": "src/arc-demo-helper.js",
+  "authors": [
+    "pawel Psztyc",
+    "The Advanced REST client authors <arc@mulesoft.com>"
+  ],
+  "homepage": "https://github.com/advanced-rest-client/arc-demo-helper",
+  "scripts": {
+    "start": "owc-dev-server --open demo",
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:legacy": "karma start --legacy --coverage",
+    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
+  },
+  "dependencies": {
+    "@polymer/font-roboto": "github:PolymerElements/font-roboto",
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
+    "prism": "^4.1.2"
+  },
+  "devDependencies": {
+    "@open-wc/demoing-storybook": "^0.2.0",
+    "@open-wc/testing": "^0.11.1",
+    "@open-wc/testing-karma": "^2.0.0",
+    "@open-wc/testing-karma-bs": "^1.0.0",
+    "owc-dev-server": "^0.3.0",
+    "@polymer/gen-typescript-declarations": "^1.6.1",
+    "webpack-merge": "^4.1.5"
+  }
+}

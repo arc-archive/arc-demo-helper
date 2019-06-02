@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <style>
+    p {
+      margin: 0.8em 0.6em;
+    }
+
+    .block {
+      margin: 1em;
+      background-color: #FFEB3B;
+    }
+  </style>
+</head>
+<body>
+  <section class="centered">
+    <div class="block horizontal-section-container">
+      <p>This is container</p>
+      <p>horizontal-section-container</p>
+    </div>
+    <div class="block vertical-section-container">
+      <p>This is container</p>
+      <p>vertical-section-container</p>
+    </div>
+
+    <div class="block">
+      <arc-demo-helper>
+        <template>
+          <p>This is test code snippet</p>
+        </template>
+      </arc-demo-helper>
+
+      <arc-demo-helper>
+        <template>
+          <button id="testButton">This is test Button</button>
+          <script>
+          {
+            document.getElementById('testButton').addEventListener('click', (e) => {
+              e.target.innerText = 'It works!';
+            });
+          }
+          </script>
+        </template>
+      </arc-demo-helper>
+    </div>
+  </section>
+
+  <script type="module" src="../src/arc-demo-helper.js"></script>
+</body>
+</html>
