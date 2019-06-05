@@ -30,8 +30,11 @@ body {
 try {
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
 } catch (_) {
-  const s = document.createElement('style');
-  s.type = 'text/css';
-  s.innerHTML = style.cssText;
-  document.getElementsByTagName('head')[0].appendChild(s);
+  /* istanbul ignore next */
+  {
+    const s = document.createElement('style');
+    s.type = 'text/css';
+    s.innerHTML = style.cssText;
+    document.getElementsByTagName('head')[0].appendChild(s);
+  }
 }

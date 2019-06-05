@@ -249,7 +249,6 @@ export class ArcDemoHelper extends LitElement {
     const slot = this.shadowRoot.querySelector('#content');
     const template = slot.assignedNodes().find((node) => node.nodeName === 'TEMPLATE');
     if (!template) {
-      this.markdown = '';
       return;
     }
     let snippet = this.unindent(template.innerHTML);
@@ -279,7 +278,7 @@ export class ArcDemoHelper extends LitElement {
       if (prev === null) {
         return lineIndent;
       }
-      return lineIndent < prev ? lineIndent : prev;
+      return lineIndent < prev ? /* istanbul ignore next */ lineIndent : prev;
     }, null);
 
     return lines.map((l) => l.substr(indent)).join('\n');
@@ -312,8 +311,11 @@ export class ArcDemoHelper extends LitElement {
       button.textContent = 'done';
     } catch (err) {
       // Copy command is not available
-      console.warn(err);
-      button.textContent = 'error';
+      /* istanbul ignore next: It is really hard to get here */
+      {
+        console.warn(err);
+        button.textContent = 'error';
+      }
     }
 
     // Return to the copy button after a second.
