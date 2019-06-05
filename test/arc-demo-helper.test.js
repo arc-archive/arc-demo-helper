@@ -1,9 +1,9 @@
-import { html, fixture, expect } from '@open-wc/testing';
+import { fixture, assert } from '@open-wc/testing';
 
-import '../src/arc-demo-helper.js';
+import '../arc-demo-helper.js';
 import './simple-button.js';
 
-describe('display', () => {
+describe('Rendering content', () => {
   let emptyHeight;
 
   beforeEach(async () => {
@@ -14,15 +14,15 @@ describe('display', () => {
   it('can render native elements', async () => {
     const element = await fixture('<arc-demo-helper><template><input disabled></template></arc-demo-helper>');
     const rect = element.getBoundingClientRect();
-    expect(rect.height).to.be.greaterThan(emptyHeight);
+    assert.isAbove(rect.height, emptyHeight);
 
     // The demo is rendered in the light dom, so it should exist, and
     // it should respect the demo element's attributes, and not make up
     // new ones.
-    const input = element.querySelector('input')
-    expect(input).to.be.ok;
-    expect(input.disabled).to.be.true;
-    expect(element.markdown).to.be.equal('<input disabled>');
+    const input = element.querySelector('input');
+    assert.ok(input);
+    assert.isTrue(input.disabled);
+    assert.equal(element.markdown, '<input disabled>');
   });
 
   it('can render custom elements', async () => {
@@ -32,15 +32,22 @@ describe('display', () => {
       </template>
     </arc-demo-helper>`);
     const rect = element.getBoundingClientRect();
-    expect(rect.height).to.be.greaterThan(emptyHeight);
+    assert.isAbove(rect.height, emptyHeight);
 
     // The demo is rendered in the light dom, so it should exist, and
     // it should respect the demo element's attributes, and not make up
     // new ones.
-    const button = element.querySelector('simple-button')
-    expect(button).to.be.ok;
-    expect(button.value).to.be.equal('batman');
-    expect(element.markdown).to.be.equal('\n<simple-button value="batman"></simple-button>\n');
+    const button = element.querySelector('simple-button');
+    assert.ok(button);
+    assert.equal(button.value, 'batman');
+    assert.equal(element.markdown, '\n<simple-button value="batman"></simple-button>\n');
+  });
+
+  it('Won\'t render when no template', async () => {
+    const element = await fixture(`<arc-demo-helper>
+      <simple-button value="batman"></simple-button>
+    </arc-demo-helper>`);
+    assert.isUndefined(element.markdown);
   });
 });
 
@@ -57,7 +64,7 @@ describe('_copyToClipboard', () => {
     // LitElement wraps event listeners so sinon won't detect the actual call of
     // the function. When the function was executed then the button label is different
     // then default one
-    expect(button.innerText.toLowerCase()).not.to.be.equal('copy');
+    assert.notEqual(button.innerText.toLowerCase(), 'copy');
   });
 });
 
@@ -67,7 +74,7 @@ describe('_resetCopyButtonState', () => {
     const button = element.shadowRoot.querySelector('#copyButton');
     button.innerText = 'test';
     element._resetCopyButtonState();
-    expect(button.innerText.toLowerCase()).to.be.equal('copy');
+    assert.equal(button.innerText.toLowerCase(), 'copy');
   });
 });
 
@@ -76,7 +83,7 @@ describe('unindent()', () => {
     const element = await fixture('<arc-demo-helper></arc-demo-helper>');
     const txt = '';
     const result = element.unindent(txt);
-    expect(result).to.be.equal(txt);
+    assert.equal(result, txt);
   });
 
   it('Removes indent', async () => {
@@ -87,6 +94,6 @@ describe('unindent()', () => {
   test
 `;
     const result = element.unindent(txt);
-    expect(result).to.be.equal('\ntest\n  test\ntest\n');
+    assert.equal(result, '\ntest\n  test\ntest\n');
   });
 });
