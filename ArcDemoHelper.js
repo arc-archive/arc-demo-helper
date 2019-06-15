@@ -1,5 +1,4 @@
 import { html, css, LitElement } from 'lit-element';
-import '@polymer/font-roboto/roboto.js';
 import './demo-pages-shared-styles.js';
 import 'prismjs/prism.js';
 import 'prismjs/components/prism-markdown.min.js';
