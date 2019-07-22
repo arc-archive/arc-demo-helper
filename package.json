@@ -29,6 +29,7 @@
     "update-types": "gen-typescript-declarations --deleteExisting --outDir ."
   },
   "dependencies": {
+    "@polymer/font-roboto": "^3.0.2",
     "@polymer/paper-dropdown-menu": "^3.0.0",
     "@polymer/paper-item": "^3.0.0",
     "@polymer/paper-listbox": "^3.0.0",
