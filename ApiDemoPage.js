@@ -8,6 +8,7 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toggle-button/paper-toggle-button.js';
 import '@api-components/raml-aware/raml-aware.js';
 import './api-page-styles.js';
+import './demo-pages-shared-styles.js';
 /**
  * Base class for API components demo page.
  * It creates basic sceleton for API demo page.
@@ -212,9 +213,11 @@ export class ApiDemoPageBase {
   _render() {
     render(html`
       ${this.headerTemplate()}
-      <section role="main" class="vertical-section-container centered main">
+      <section role="main" class="horizontal-section-container centered main">
         ${this._apiNavigationTemplate()}
-        ${this.contentTemplate()}
+        <div class="demo-container">
+          ${this.contentTemplate()}
+        </div>
       </section>`, document.querySelector('#demo'));
   }
 }

@@ -1,18 +1,6 @@
 /* eslint-disable max-len */
 import { css } from 'lit-element';
 const style = css`
-html,
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  height: 100vh;
-  --arc-font-body1-font-size: 14px;
-  --arc-font-body1-font-weight: 400;
-  --arc-font-body1-line-height: 20px;
-  --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-  --code-background-color: #f5f2f0;
-}
 [role="main"].centered {
   max-width: 1100px;
 }
@@ -61,7 +49,16 @@ header {
 }
 
 body.styled {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  height: 100vh;
   --primary-color: #00A2DF;
+  --arc-font-body1-font-size: 14px;
+  --arc-font-body1-font-weight: 400;
+  --arc-font-body1-line-height: 20px;
+  --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+  --code-background-color: #f5f2f0;
 }
 
 body.styled.dark {
@@ -87,6 +84,10 @@ body.styled.dark header {
 
 body.styled.dark .settings-action-item {
   background-color: #212121;
+}
+
+.demo-container {
+  flex: 1;
 }
 `;
 try {
