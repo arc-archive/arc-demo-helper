@@ -174,6 +174,7 @@ export class ApiDemoPageBase {
    */
   headerTemplate() {
     return html`
+    <raml-aware .api="${this.amf}" scope="model"></raml-aware>
     <header>
       <paper-dropdown-menu label="Select demo API">
         <paper-listbox slot="dropdown-content" id="apiList" @selected-changed="${this._apiChanged}">
@@ -193,8 +194,7 @@ export class ApiDemoPageBase {
         <div class="settings-action-item">
           <paper-toggle-button checked @checked-changed="${this._stylesHandler}">Toggle styles</paper-toggle-button>
         </div>
-      </div>
-    </div>`: undefined}
+      </div>`: undefined}
     </header>`;
   }
 
