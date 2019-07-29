@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { css } from 'lit-element';
 const style = css`
 body {
