@@ -15,7 +15,7 @@ class ComponentDemo extends ArcDemoPage {
 
       <arc-demo-helper>
         <template>
-          arc-demo-helper in ArcDemoPage
+          <p>arc-demo-helper in ArcDemoPage</p>
         </template>
       </arc-demo-helper>
     `;

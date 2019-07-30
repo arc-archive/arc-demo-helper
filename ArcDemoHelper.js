@@ -144,14 +144,14 @@ export class ArcDemoHelper extends LitElement {
     .demo {
       display: block;
       border-bottom: 1px solid #e0e0e0;
-      background-color: white;
+      background-color: var(--arc-demo-helper-demo-background-color, white);
       margin: 0;
       padding: 20px;
     }
 
     .code-container {
       margin: 0;
-      background-color: #f5f5f5;
+      background-color: var(--arc-demo-helper-code-container-background-color, #f5f5f5);
       font-size: 13px;
       overflow: auto;
       position: relative;
@@ -161,7 +161,7 @@ export class ArcDemoHelper extends LitElement {
     .code {
       padding: 20px;
       margin: 0;
-      background-color: var(--google-grey-100);
+      background-color: var(--arc-demo-helper-code-container-background-color, var(--google-grey-100));
       font-size: 13px;
       overflow: auto;
 
