@@ -42,14 +42,22 @@ body {
 
 header {
   padding: 12px 24px;
-  background-color: #C5E1A5;
+  background-color: #2196F3;
+  color: #000;
   display: flex;
   align-items: center;
-  --iron-icon-fill-color: #3E2723;
+  --iron-icon-fill-color: #000;
   --paper-input-container-focus-color: #33691E;
   --paper-input-container-label: {
     color: #3E2723;
   };
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -.012em;
+  line-height: 32px;
 }
 
 .spacer {
@@ -95,6 +103,7 @@ body.styled.dark .card {
 
 body.styled.dark header {
   background-color: #212121;
+  color: #fff;
   --iron-icon-fill-color: #fff;
   --paper-input-container-color: rgba(255, 255, 255, 0.84);
 }
