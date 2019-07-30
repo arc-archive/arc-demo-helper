@@ -2,53 +2,24 @@
 <html lang="en-GB">
 <head>
   <meta charset="utf-8">
-  <style>
-    p {
-      margin: 0.8em 0.6em;
-    }
-
-    .block {
-      margin: 1em;
-      background-color: #FFEB3B;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>ARC/API demo pages</title>
 </head>
-<body>
-  <section class="centered">
-    <div class="block horizontal-section-container">
-      <p>This is container</p>
-      <p>horizontal-section-container</p>
-    </div>
-    <div class="block vertical-section-container">
-      <p>This is container</p>
-      <p>vertical-section-container</p>
-    </div>
+<body class="styled">
+  <header>
+    <h1>ARC/API components demo pages</h1>
+  </header>
+  <section role="main" class="centered">
+    <dl>
+        <dt><a href="./helper.html">helper.html</a></dt>
+        <dd>arc-demo-helper demo page</dd>
 
-    <div class="block">
-      <arc-demo-helper>
-        <template>
-          <p>This is test code snippet</p>
-        </template>
-      </arc-demo-helper>
+        <dt><a href="./arc.html">arc.html</a></dt>
+        <dd>ARC components demo page template</dd>
 
-      <arc-demo-helper>
-        <template>
-          <button id="testButton">This is test Button</button>
-          <script>
-          {
-            document.getElementById('testButton').addEventListener('click', (e) => {
-              e.target.innerText = 'It works!';
-            });
-          }
-          </script>
-        </template>
-      </arc-demo-helper>
-    </div>
-
-    <section class="card">
-      <p>This is a card</p>
-    </div>
-
+        <dt><a href="./api.html">api.html</a></dt>
+        <dd>API components demo page template</dd>
+    </dl>
   </section>
 
   <script type="module" src="../arc-demo-helper.js"></script>
