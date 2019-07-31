@@ -10,6 +10,14 @@ api-navigation {
   min-width: 320px;
   overflow: auto;
 }
+body.styled header {
+  background-color: #C5E1A5;
+  --iron-icon-fill-color: #3E2723;
+  --paper-input-container-focus-color: #33691E;
+  --paper-input-container-label: {
+    color: #3E2723;
+  };
+}
 `;
 try {
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
