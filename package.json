@@ -1,6 +1,6 @@
 {
   "name": "@advanced-rest-client/arc-demo-helper",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "An element to help create demo pages for ARC components",
   "keywords": [
     "web-components",
