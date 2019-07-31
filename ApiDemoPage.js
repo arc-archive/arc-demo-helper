@@ -102,12 +102,10 @@ export class ApiDemoPageBase {
     this._loadFile(file);
   }
 
-  _loadFile(file) {
-    fetch('./' + file)
-    .then((response) => response.json())
-    .then((data) => {
-      this.amf = data;
-    });
+  async _loadFile(file) {
+    const response = await fetch('./' + file);
+    const data = await response.json();
+    this.amf = data;
   }
   /**
    * This method to be overriten in child class to handle navigation.
