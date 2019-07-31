@@ -64,6 +64,14 @@ export class ApiDemoPageBase {
     this._setObservableProperty('amf', value);
   }
 
+  get hasData() {
+    return this._hasData;
+  }
+
+  set hasData(value) {
+    this._setObservableProperty('hasData', value);
+  }
+
   get narrowActive() {
     return this._narrowActive;
   }
