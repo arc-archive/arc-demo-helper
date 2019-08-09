@@ -42,10 +42,9 @@ export class ApiDemoPageBase {
     this._narrowHandler = this._narrowHandler.bind(this);
     this._stylesHandler = this._stylesHandler.bind(this);
 
-    window.addEventListener('api-navigation-selection-changed', this._navChanged);
-    setTimeout(() => {
-      document.getElementById('apiList').selected = 0;
-    }, 2);
+    this.initObservableProperties([
+      'amf', 'hasData', 'narrowActive', 'stylesActive', 'darkThemeActive'
+    ]);
 
     this.endpointsOpened = true;
     this.docsOpened = false;
@@ -54,46 +53,32 @@ export class ApiDemoPageBase {
     this.renderViewControls = true;
 
     document.body.classList.add('styled');
+
+    window.addEventListener('api-navigation-selection-changed', this._navChanged);
+    setTimeout(() => {
+      document.getElementById('apiList').selected = 0;
+    }, 2);
   }
 
-  get amf() {
-    return this._amf;
-  }
-
-  set amf(value) {
-    this._setObservableProperty('amf', value);
-  }
-
-  get hasData() {
-    return this._hasData;
-  }
-
-  set hasData(value) {
-    this._setObservableProperty('hasData', value);
-  }
-
-  get narrowActive() {
-    return this._narrowActive;
-  }
-
-  set narrowActive(value) {
-    this._setObservableProperty('narrowActive', value);
-  }
-
-  get stylesActive() {
-    return this._stylesActive;
-  }
-
-  set stylesActive(value) {
-    this._setObservableProperty('stylesActive', value);
-  }
-
-  get darkThemeActive() {
-    return this._darkThemeActive;
-  }
-
-  set darkThemeActive(value) {
-    this._setObservableProperty('darkThemeActive', value);
+  /**
+   * Creates setters and getters to properties defined in the passed list of properties.
+   * Property setter will trigger render function.
+   *
+   * @param {Array<String>} props List of properties to initialize.
+   */
+  initObservableProperties(props) {
+    props.forEach((item) => {
+      Object.defineProperty(this, item, {
+        get() {
+          return this['_' + item];
+        },
+        set(newValue) {
+          this._setObservableProperty(item, newValue);
+        },
+        enumerable: true,
+        configurable: true
+      });
+    });
   }
 
   _setObservableProperty(prop, value) {

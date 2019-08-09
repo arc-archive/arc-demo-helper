@@ -41,6 +41,10 @@ export class ArcDemoPage {
     this._narrowHandler = this._narrowHandler.bind(this);
     this._stylesHandler = this._stylesHandler.bind(this);
 
+    this.initObservableProperties([
+      'narrowActive', 'componentName', 'stylesActive', 'darkThemeActive'
+    ]);
+
     this._narrowActive = false;
     this.renderViewControls = true;
     // This is rendered in the header section
@@ -51,37 +55,25 @@ export class ArcDemoPage {
     script.src = '../node_modules/web-animations-js/web-animations-next.min.js';
     document.head.appendChild(script);
   }
-
-  get narrowActive() {
-    return this._narrowActive;
-  }
-
-  set narrowActive(value) {
-    this._setObservableProperty('narrowActive', value);
-  }
-
-  get componentName() {
-    return this._componentName;
-  }
-
-  set componentName(value) {
-    this._setObservableProperty('componentName', value);
-  }
-
-  get stylesActive() {
-    return this._stylesActive;
-  }
-
-  set stylesActive(value) {
-    this._setObservableProperty('stylesActive', value);
-  }
-
-  get darkThemeActive() {
-    return this._darkThemeActive;
-  }
-
-  set darkThemeActive(value) {
-    this._setObservableProperty('darkThemeActive', value);
+  /**
+   * Creates setters and getters to properties defined in the passed list of properties.
+   * Property setter will trigger render function.
+   *
+   * @param {Array<String>} props List of properties to initialize.
+   */
+  initObservableProperties(props) {
+    props.forEach((item) => {
+      Object.defineProperty(this, item, {
+        get() {
+          return this['_' + item];
+        },
+        set(newValue) {
+          this._setObservableProperty(item, newValue);
+        },
+        enumerable: true,
+        configurable: true
+      });
+    });
   }
 
   _setObservableProperty(prop, value) {
