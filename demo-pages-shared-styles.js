@@ -1,12 +1,18 @@
 /* eslint-disable max-len */
 import { css } from 'lit-element';
 const style = css`
+html {
+  font-size: 15px;
+  line-height: 20px;
+}
+
 body {
   font-family: 'Roboto', 'Noto', sans-serif;
   font-size: 14px;
   margin: 0;
   padding: 24px;
   background-color: #fafafa;
+  color: #5f6368;
 }
 
 .horizontal-section-container {
@@ -79,6 +85,7 @@ body.styled {
   background-color: #fff;
   height: 100vh;
   --primary-color: #00A2DF;
+  --accent-color: rgb(33, 150, 243);
   --arc-font-body1-font-size: 14px;
   --arc-font-body1-font-weight: 400;
   --arc-font-body1-line-height: 20px;
@@ -93,6 +100,10 @@ body.styled.dark {
   --primary-color: #2196f3;
   --primary-text-color: #fff;
   --paper-toggle-button-label-color: #fff;
+  --primary-background-color: #424242;
+  --secondary-text-color: #616161;
+  --arc-interactive-demo-options-color: #F5F5F5;
+  --error-color: #FF5722;
 }
 
 body.styled.dark arc-demo-helper {
@@ -123,6 +134,51 @@ body.styled.dark .settings-action-item {
 
 .demo-container {
   flex: 1;
+}
+
+h2 {
+  font-size: 60px;
+  color: #202124;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 24px;
+  color: #202124;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+body.styled.dark h2,
+body.styled.dark h3,
+body.styled.dark h4 {
+  color: #F5F5F5;
+}
+
+.documentation-section {
+  max-width: 1400px;
+  padding: 60px 20px;
+  max-width: 1400px;
+  width: 100%;
+  border-bottom: 1px #e5e5e5 solid;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+p {
+  margin: 1.40em 0;
 }
 `;
 try {
