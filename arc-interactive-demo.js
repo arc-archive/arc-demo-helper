@@ -50,6 +50,7 @@ export class ArcInteractiveDemo extends LitElement {
       align-items: center;
       flex-direction: row;
       border-bottom: 1px var(--arc-interactive-demo-border-color, #e5e5e5) solid;
+      height: 48px;
     }
 
     .content {
@@ -80,6 +81,7 @@ export class ArcInteractiveDemo extends LitElement {
       border-bottom: 1px var(--arc-interactive-demo-border-color, #e5e5e5) solid;
       padding-left: 12px;
       color: var(--arc-interactive-demo-options-color, #757575);
+      height: 48px;
     }
 
     .config-title h3 {
@@ -173,6 +175,7 @@ export class ArcInteractiveDemo extends LitElement {
     this._opened = value;
     this.requestUpdate('opened', old);
     this._updateTabsAnimation();
+    this._updateOptionsTabindex();
   }
 
   constructor() {
@@ -180,6 +183,10 @@ export class ArcInteractiveDemo extends LitElement {
     this.opened = false;
     this.states = [];
     this.selectedState = 0;
+  }
+
+  firstUpdated() {
+    this._updateOptionsTabindex();
   }
 
   _stateChangeHandler(e) {
@@ -200,28 +207,79 @@ export class ArcInteractiveDemo extends LitElement {
     }, 120);
   }
 
+  _updateOptionsTabindex() {
+    const slot = this.shadowRoot.querySelector('slot[name="options"]');
+    if (!slot) {
+      return;
+    }
+    const nodes = slot.assignedNodes();
+    const opened = this.opened;
+    for (let i = 0, len = nodes.length; i < len; i++) {
+      const node = nodes[i];
+      if (node.nodeType !== Node.ELEMENT_NODE) {
+        continue;
+      }
+      if (opened) {
+        this._activateOptionNode(node);
+      } else {
+        this._deactivateOptionNode(node);
+      }
+    }
+  }
+
+  _activateOptionNode(node) {
+    const old = node.dataset.oldTabindex;
+    if (!old) {
+      return;
+    }
+    node.setAttribute('tabindex', old);
+    node.setAttribute('aria-hidden', 'false');
+    delete node.dataset.oldTabindex;
+  }
+
+  _deactivateOptionNode(node) {
+    const current = node.getAttribute('tabindex');
+    if (!current) {
+      return;
+    }
+    node.dataset.oldTabindex = current;
+    node.setAttribute('tabindex', '-1');
+    node.setAttribute('aria-hidden', 'true');
+  }
+
   render() {
     const { states, selectedState, opened } = this;
     return html`
     <div class="demo-content">
       <div class="content-selector">
-        <paper-tabs .selected="${selectedState}" @selected-changed="${this._stateChangeHandler}">
-          ${states.map((item) => html`<paper-tab>${item}</paper-tab>`)}
+        <paper-tabs
+          .selected="${selectedState}"
+          @selected-changed="${this._stateChangeHandler}"
+          aria-label="Element state selection">
+          ${states.map((item) => html`
+            <paper-tab aria-label="Activate to enable state ${item}" aria-controls="stateContent">${item}</paper-tab>
+          `)}
         </paper-tabs>
-        <paper-button ?hidden=${opened} @click="${this._toggleOptions}">Options</paper-button>
+        <paper-button
+          ?hidden=${opened}
+          @click="${this._toggleOptions}"
+          tabindex="${opened ? '-1': '0'}"
+          aria-label="Toggle configuration options"
+          aria-controls="cnfPanel">Options</paper-button>
       </div>
       <div class="content">
         <slot name="content"></slot>
       </div>
     </div>
 
-    <div class="demo-config ${opened ? 'opened' : ''}">
+    <div id="cnfPanel" class="demo-config ${opened ? 'opened' : ''}" aria-hidden="${opened ? 'false' : 'true'}">
       <div class="config-title">
         <h3>Configuration</h3>
         <paper-icon-button
           title="Close panel"
           icon="close"
           aria-label="Close configuration panel"
+          tabindex="${opened ? '0': '-1'}"
           @click="${this._toggleOptions}"></paper-icon-button>
       </div>
       <div class="options">
