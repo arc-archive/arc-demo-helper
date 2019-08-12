@@ -1,8 +1,8 @@
 import { html, css, LitElement } from 'lit-element';
 import '@polymer/paper-tabs/paper-tabs.js';
 import '@polymer/paper-tabs/paper-tab.js';
-import '@anypoint-web-components/anypoint-button/anypoint-button.js';
-import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 
@@ -208,7 +208,7 @@ export class ArcInteractiveDemo extends LitElement {
         <paper-tabs .selected="${selectedState}" @selected-changed="${this._stateChangeHandler}">
           ${states.map((item) => html`<paper-tab>${item}</paper-tab>`)}
         </paper-tabs>
-        <anypoint-button ?hidden=${opened} @click="${this._toggleOptions}">Options</anypoint-button>
+        <paper-button ?hidden=${opened} @click="${this._toggleOptions}">Options</paper-button>
       </div>
       <div class="content">
         <slot name="content"></slot>
@@ -218,11 +218,11 @@ export class ArcInteractiveDemo extends LitElement {
     <div class="demo-config ${opened ? 'opened' : ''}">
       <div class="config-title">
         <h3>Configuration</h3>
-        <anypoint-icon-button @click="${this._toggleOptions}">
-          <button title="Close panel" aria-label="Close configuration panel">
-            <iron-icon icon="close"></iron-icon>
-          </button>
-        </anypoint-icon-button>
+        <paper-icon-button
+          title="Close panel"
+          icon="close"
+          aria-label="Close configuration panel"
+          @click="${this._toggleOptions}"></paper-icon-button>
       </div>
       <div class="options">
         <slot name="options"></slot>

@@ -126,7 +126,10 @@ export class ArcDemoPage {
    */
   headerControlsTemplate() {
     return html`<paper-menu-button dynamic-align>
-    <paper-icon-button icon="settings" slot="dropdown-trigger"></paper-icon-button>
+    <paper-icon-button
+      aria-label="Toggle demo page settings menu"
+      icon="settings"
+      slot="dropdown-trigger"></paper-icon-button>
     <div slot="dropdown-content">
       ${this._headerControlsTemplate()}
     </div>`;
