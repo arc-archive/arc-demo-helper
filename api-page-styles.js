@@ -21,6 +21,27 @@ body.styled header {
 h1.api-title {
   margin-right: 12px;
 }
+
+body.styled.dark {
+  --code-background-color: #263238;
+  --code-type-boolean-value-color: #F07178;
+  --code-type-number-value-color: #F78C6A;
+  --code-type-text-value-color: #C3E88D;
+  --code-property-value-color: #F07178;
+  --code-operator-value-background-color: transparent;
+}
+
+body.styled.dark api-navigation {
+  --http-method-label-get-background-color: rgb(0, 128, 0);
+  --http-method-label-get-color: #fff;
+  --http-method-label-post-background-color: rgb(33, 150, 243);
+  --http-method-label-post-color: #fff;
+  --http-method-label-put-background-color: rgb(255, 165, 0);
+  --http-method-label-put-color: fff;
+  --http-method-label-delete-background-color: rgb(244, 67, 54);
+  --http-method-label-delete-color: fff;
+  --iron-icon-fill-color: #fff;
+}
 `;
 try {
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);
