@@ -18,6 +18,9 @@ body.styled header {
     color: #3E2723;
   };
 }
+h1.api-title {
+  margin-right: 12px;
+}
 `;
 try {
   document.adoptedStyleSheets = document.adoptedStyleSheets.concat(style.styleSheet);

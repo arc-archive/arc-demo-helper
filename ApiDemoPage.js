@@ -43,9 +43,11 @@ export class ApiDemoPageBase {
     this._stylesHandler = this._stylesHandler.bind(this);
 
     this.initObservableProperties([
-      'amf', 'hasData', 'narrowActive', 'stylesActive', 'darkThemeActive'
+      'amf', 'hasData', 'narrowActive', 'stylesActive', 'darkThemeActive',
+      'componentName'
     ]);
-
+    // This is rendered in the header section
+    this._componentName = '';
     this.endpointsOpened = true;
     this.docsOpened = false;
     this.typesOpened = false;
@@ -165,17 +167,25 @@ export class ApiDemoPageBase {
    * @return {Object} HTML template for demo header
    */
   headerTemplate() {
+    const { componentName } = this;
     return html`
     <raml-aware .api="${this.amf}" scope="model"></raml-aware>
     <header>
-      <paper-dropdown-menu label="Select demo API">
+      <h1 class="api-title">${componentName}</h1>
+      <paper-dropdown-menu
+        label="Select demo API"
+        aria-label="Activate to select demo API"
+        aria-expanded="false">
         <paper-listbox slot="dropdown-content" id="apiList" @selected-changed="${this._apiChanged}">
         ${this._apiListTemplate()}
         </paper-listbox>
       </paper-dropdown-menu>
       <div class="spacer"></div>
       ${this.renderViewControls ? html`<paper-menu-button dynamic-align>
-      <paper-icon-button icon="settings" slot="dropdown-trigger"></paper-icon-button>
+      <paper-icon-button
+        icon="settings"
+        slot="dropdown-trigger"
+        aria-label="Press to toggle demo page settings menu"></paper-icon-button>
       <div slot="dropdown-content">
         <div class="settings-action-item">
           <paper-toggle-button @checked-changed="${this._darkThemeHandler}">Toggle dark theme</paper-toggle-button>
