@@ -23,7 +23,7 @@ h1.api-title {
 }
 
 body.styled.dark {
-  --code-background-color: #263238;
+  --code-background-color: #f5f7f9;
   --code-type-boolean-value-color: #F07178;
   --code-type-number-value-color: #F78C6A;
   --code-type-text-value-color: #C3E88D;

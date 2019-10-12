@@ -90,7 +90,7 @@ body.styled {
   --arc-font-body1-font-weight: 400;
   --arc-font-body1-line-height: 20px;
   --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-  --code-background-color: #f5f2f0;
+  --code-background-color: #f5f7f9;
 }
 
 body.styled.dark {
