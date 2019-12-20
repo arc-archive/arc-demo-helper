@@ -5,7 +5,7 @@
  *   https://github.com/Polymer/tools/tree/master/packages/gen-typescript-declarations
  *
  * To modify these typings, edit the source file(s):
- *   demo-pages-shared-styles.js
+ *   api-page-styles.js
  */
 
 
