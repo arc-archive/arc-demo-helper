@@ -24,8 +24,6 @@
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "test:legacy": "karma start --legacy --coverage",
-    "test:legacy:watch": "karma start --legacy --auto-watch=true --single-run=false",
     "update-types": "gen-typescript-declarations --deleteExisting --outDir .",
     "generate-model": "node demo/model.js",
     "prepare": "node demo/model.js"
