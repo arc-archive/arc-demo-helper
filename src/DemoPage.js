@@ -1,5 +1,9 @@
 import { html, render } from 'lit-html';
-import './demo-pages-shared-styles.js';
+import { settings } from '@advanced-rest-client/arc-icons/ArcIcons.js';
+import '@anypoint-web-components/anypoint-menu-button/anypoint-menu-button.js';
+import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
+import '@anypoint-web-components/anypoint-switch/anypoint-switch.js';
+import './SharedStyles.js';
 /**
  * Base class for ARC components demo page.
  *
@@ -7,12 +11,12 @@ import './demo-pages-shared-styles.js';
  *
  * ```javascript
  * import { html, render } from 'lit-html';
- * import { ArcDemoPage } from '@advanced-rest-client/arc-demo-helper/ArcDemoPage.js';
+ * import { DemoPage } from '@advanced-rest-client/arc-demo-helper';
  *
- * class ComponentDemo extends ArcDemoPage {
+ * class ComponentDemo extends DemoPage {
  *  contentTemplate() {
  *    return html`
- *      return html`<my-component ?narrow="${this.narrowActive}"></my-component>`;
+ *      return html`<my-component ?narrow="${this.narrow}"></my-component>`;
  *    `;
  *  }
  * }
@@ -31,26 +35,37 @@ import './demo-pages-shared-styles.js';
  * under `body.styled.dark` selector. When the user chooses this option it renders content
  * in dark theme.
  */
-export class ArcDemoPage {
+export class DemoPage {
   constructor() {
+    this.firstRendered = false;
     this._darkThemeHandler = this._darkThemeHandler.bind(this);
     this._narrowHandler = this._narrowHandler.bind(this);
     this._stylesHandler = this._stylesHandler.bind(this);
+    this._toggleMainOption = this._toggleMainOption.bind(this);
 
     this.initObservableProperties([
-      'narrowActive', 'componentName', 'stylesActive', 'darkThemeActive'
+      'narrow', 'componentName', 'stylesActive', 'darkThemeActive'
     ]);
 
-    this._narrowActive = false;
-    this.renderViewControls = true;
+    this._narrow = false;
+    this.renderViewControls = false;
     // This is rendered in the header section
     this._componentName = '';
 
     document.body.classList.add('styled');
+
     const script = document.createElement('script');
     script.src = '../node_modules/web-animations-js/web-animations-next.min.js';
     document.head.appendChild(script);
   }
+
+  /**
+   * Helper function to be overriten by child classes. It is called when the view
+   * is rendered for the first time.
+   */
+  firstRender() {
+  }
+
   /**
    * Creates setters and getters to properties defined in the passed list of properties.
    * Property setter will trigger render function.
@@ -91,7 +106,7 @@ export class ArcDemoPage {
   }
 
   _narrowHandler(e) {
-    this.narrowActive = e.target.checked;
+    this.narrow = e.target.checked;
   }
 
   _stylesHandler(e) {
@@ -102,6 +117,21 @@ export class ArcDemoPage {
       document.body.classList.remove('styled');
     }
   }
+
+  /**
+   * A handler for the `change` event for an element that has `checked` and `name` properties.
+   * This can be used with `anypoint-switch`, `anypoint-checkbox`, and `checkbox` elements.
+   *
+   * The `name` shoulds correspond to a variable name to be set. The set value is the value
+   * of `checked` property read from the event's target.
+   *
+   * @param {Event} e
+   */
+  _toggleMainOption(e) {
+    const { name, checked } = e.target;
+    this[name] = checked;
+  }
+
   /**
    * Abstract method. When not overriding `render()` method you can use
    * this function to render content inside the standar API components layout.
@@ -122,8 +152,36 @@ export class ArcDemoPage {
     const { componentName } = this;
     return html`
     <header>
-      <h1>${componentName}</h1>
+      ${componentName ? html`<h1 class="api-title">${componentName}</h1>` : ''}
+      <div class="spacer"></div>
+      ${this._viewControlsTemplate()}
     </header>`;
+  }
+
+  _viewControlsTemplate() {
+    if (!this.renderViewControls) {
+      return '';
+    }
+    return html`
+    <anypoint-menu-button dynamicalign>
+      <anypoint-icon-button
+        slot="dropdown-trigger"
+        aria-label="Press to toggle demo page settings menu"
+      >
+        <span class="icon">${settings}</span>
+      </anypoint-icon-button>
+      <div slot="dropdown-content">
+        <div class="settings-action-item">
+          <anypoint-switch @change="${this._darkThemeHandler}">Toggle dark theme</anypoint-switch>
+        </div>
+        <div class="settings-action-item">
+          <anypoint-switch @change="${this._narrowHandler}">Toggle narrow attribute</anypoint-switch>
+        </div>
+        <div class="settings-action-item">
+          <anypoint-switch checked @change="${this._stylesHandler}">Toggle styles</anypoint-switch>
+        </div>
+      </div>
+    </anypoint-menu-button>`;
   }
 
   render() {
@@ -138,6 +196,10 @@ export class ArcDemoPage {
   }
 
   _render() {
+    if (!this.firstRendered) {
+      this.firstRendered = true;
+      setTimeout(() => this.firstRender());
+    }
     render(html`
       ${this.headerTemplate()}
       <section role="main" class="vertical-section-container centered main">

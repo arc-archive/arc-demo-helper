@@ -2,12 +2,7 @@ language: node_js
 node_js: stable
 sudo: required
 addons:
-  firefox: latest
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
-cache: npm
+  chrome: stable
 script:
 - npm test
+cache: npm

@@ -8,11 +8,33 @@ html {
 
 body {
   font-family: 'Roboto', 'Noto', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   margin: 0;
   padding: 24px;
   background-color: #fafafa;
   color: #5f6368;
+}
+
+body.styled {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  height: 100vh;
+  --primary-color: #000000;
+  --accent-color: rgb(33, 150, 243);
+  --dark-divider-opacity: 0.12;
+  --arc-font-body1-font-size: 14px;
+  --arc-font-body1-font-weight: 400;
+  --arc-font-body1-line-height: 20px;
+  --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+  --code-background-color: #f5f7f9;
+  --anypoiont-menu-button-dropdown-background: #fff;
+  --anypoint-listbox-background-color: #fff;
+  --anypoint-item-focused-background-color: #f5f5f5;
+  --anypoint-item-before-background: transparent;
+  --anypoiont-dropdown-shaddow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --primary-color: #3F51B5;
+  --anypoint-color-primary: var(--primary-color);
 }
 
 .horizontal-section-container {
@@ -52,11 +74,6 @@ header {
   color: #000;
   display: flex;
   align-items: center;
-  --iron-icon-fill-color: #000;
-  --paper-input-container-focus-color: #33691E;
-  --paper-input-container-label: {
-    color: #3E2723;
-  };
 }
 
 header h1 {
@@ -77,20 +94,6 @@ header h1 {
   align-items: center;
   padding: 16px;
   box-sizing: border-box;
-}
-
-body.styled {
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  height: 100vh;
-  --primary-color: #00A2DF;
-  --accent-color: rgb(33, 150, 243);
-  --arc-font-body1-font-size: 14px;
-  --arc-font-body1-font-weight: 400;
-  --arc-font-body1-line-height: 20px;
-  --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-  --code-background-color: #f5f7f9;
 }
 
 body.styled.dark {
@@ -124,8 +127,6 @@ body.styled.dark .card {
 body.styled.dark header {
   background-color: #212121;
   color: #fff;
-  --iron-icon-fill-color: #fff;
-  --paper-input-container-color: rgba(255, 255, 255, 0.84);
 }
 
 body.styled.dark .settings-action-item {
@@ -179,6 +180,13 @@ ul {
 
 p {
   margin: 1.40em 0;
+}
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 `;
 try {

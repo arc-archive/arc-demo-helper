@@ -9,20 +9,18 @@ api-navigation {
   width: 320px;
   min-width: 320px;
   overflow: auto;
+  --method-display-selected-color: #000;
 }
-body.styled header {
+
+body.styled.api header {
   background-color: #C5E1A5;
-  --iron-icon-fill-color: #3E2723;
-  --paper-input-container-focus-color: #33691E;
-  --paper-input-container-label: {
-    color: #3E2723;
-  };
 }
+
 h1.api-title {
   margin-right: 12px;
 }
 
-body.styled.dark {
+body.styled.api.dark {
   --code-background-color: #f5f7f9;
   --code-type-boolean-value-color: #F07178;
   --code-type-number-value-color: #F78C6A;
@@ -31,7 +29,7 @@ body.styled.dark {
   --code-operator-value-background-color: transparent;
 }
 
-body.styled.dark api-navigation {
+body.styled.api.dark api-navigation {
   --http-method-label-get-background-color: rgb(0, 128, 0);
   --http-method-label-get-color: #fff;
   --http-method-label-post-background-color: rgb(33, 150, 243);
@@ -40,7 +38,17 @@ body.styled.dark api-navigation {
   --http-method-label-put-color: fff;
   --http-method-label-delete-background-color: rgb(244, 67, 54);
   --http-method-label-delete-color: fff;
-  --iron-icon-fill-color: #fff;
+}
+
+body.styled.api header anypoint-item {
+  color: #000;
+}
+
+body.styled.api header anypoint-dropdown-menu {
+  color: #000;
+  background-color: white;
+  --anypoint-dropdown-menu-label-color: #000;
+  --anypoint-dropdown-menu-background-color: #fff;
 }
 `;
 try {
@@ -54,11 +62,3 @@ try {
     document.getElementsByTagName('head')[0].appendChild(s);
   }
 }
-
-const link = document.createElement('link');
-link.rel = 'stylesheet';
-link.type = 'text/css';
-link.crossOrigin = 'anonymous';
-link.href =
-  'https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,300,300italic,400italic,500,500italic,700,700italic';
-document.head.appendChild(link);
