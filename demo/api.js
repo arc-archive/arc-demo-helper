@@ -1,14 +1,16 @@
 import { html } from 'lit-html';
-import { ApiDemoPageBase } from '../ApiDemoPage.js';
+import { ApiDemoPage } from '../index.js';
 
-class ApiDemo extends ApiDemoPageBase {
+class ApiDemo extends ApiDemoPage {
   constructor() {
     super();
+    this.componentName = 'api-my-component';
+    this.renderViewControls = true;
   }
 
   _apiListTemplate() {
-    return html`<paper-item data-src="demo-api.json">Demo api</paper-item>
-    <paper-item data-src="demo-api-compact.json">Demo api - compact version</paper-item>`;
+    return html`<anypoint-item data-src="demo-api.json">Demo api</anypoint-item>
+    <anypoint-item data-src="demo-api-compact.json">Demo api - compact version</anypoint-item>`;
   }
 
   contentTemplate() {

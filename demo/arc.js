@@ -1,8 +1,8 @@
 import { html } from 'lit-html';
-import { ArcDemoPage } from '../ArcDemoPage.js';
+import { DemoPage } from '../index.js';
 import '../arc-demo-helper.js';
 
-class ComponentDemo extends ArcDemoPage {
+class ComponentDemo extends DemoPage {
   constructor() {
     super();
     this._otherHandler = this._otherHandler.bind(this);

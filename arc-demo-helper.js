@@ -1,3 +1,2 @@
-import { ArcDemoHelper } from './ArcDemoHelper.js';
-export { ArcDemoHelper };
+import { ArcDemoHelper } from './src/ArcDemoHelper.js';
 window.customElements.define('arc-demo-helper', ArcDemoHelper);

@@ -19,7 +19,7 @@ class SimpleButton extends LitElement {
   }
 
   render() {
-    return html`<div>[[value]]</div>`;
+    return html`<div>${this.value}</div>`;
   }
 }
 window.customElements.define('simple-button', SimpleButton);
