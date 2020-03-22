@@ -95,10 +95,10 @@ export class ApiDemoPage extends DemoPage {
     return html`<api-navigation
       summary
       .amf="${this.amf}"
-      ?endpoints-opened="${this.endpointsOpened}"
-      ?docs-opened="${this.docsOpened}"
-      ?types-opened="${this.typesOpened}"
-      ?security-opened="${this.securityOpened}"
+      ?endpointsopened="${this.endpointsOpened}"
+      ?docsopened="${this.docsOpened}"
+      ?typesopened="${this.typesOpened}"
+      ?securityopened="${this.securityOpened}"
     ></api-navigation>`;
   }
   /**
