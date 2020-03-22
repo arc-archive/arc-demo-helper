@@ -1,6 +1,7 @@
 import { css } from 'lit-element';
 
-export default css`:host {
+export default css`
+:host {
   display: flex;
   flex-direction: row;
   border: 1px var(--arc-interactive-demo-border-color, #e5e5e5) solid;

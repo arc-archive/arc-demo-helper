@@ -103,6 +103,22 @@ export class DemoPage {
   firstRender() {
   }
 
+  get darkThemeActive() {
+    return this._darkThemeActive;
+  }
+
+  set darkThemeActive(value) {
+    if (this._darkThemeActive === value || !document.body) {
+      return;
+    }
+    this._darkThemeActive = value;
+    if (value) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }
+
   /**
    * Creates setters and getters to properties defined in the passed list of properties.
    * Property setter will trigger render function.
@@ -135,11 +151,6 @@ export class DemoPage {
 
   _darkThemeHandler(e) {
     this.darkThemeActive = e.target.checked;
-    if (e.target.checked) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
   }
 
   _narrowHandler(e) {
