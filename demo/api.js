@@ -21,3 +21,4 @@ class ApiDemo extends ApiDemoPage {
 
 const instance = new ApiDemo();
 instance.render();
+window.apiINstance = instance;

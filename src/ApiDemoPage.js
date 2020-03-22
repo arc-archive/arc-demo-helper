@@ -1,4 +1,5 @@
 import { html, render } from 'lit-html';
+import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import '@anypoint-web-components/anypoint-dropdown-menu/anypoint-dropdown-menu.js';
 import '@anypoint-web-components/anypoint-listbox/anypoint-listbox.js';
 import '@anypoint-web-components/anypoint-item/anypoint-item.js';
@@ -34,7 +35,7 @@ import './SharedStyles.js';
  * instance.render();
  * ```
  */
-export class ApiDemoPage extends DemoPage {
+export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   constructor() {
     super();
     this._apiChanged = this._apiChanged.bind(this);

@@ -186,6 +186,8 @@ All variables and styles for the demo page should be applied to `body.styled` CS
 
 To build an API related demo page use `ApiDemoPage` class as a base class for the demo page. It extends `DemoPage` class but adds additional UI and logic into it. The `ApiDemoPage` adds dropdown to select an API (demo-api by default), adds logic to load API model, adds API navigation and support for handling selection.
 
+Finally the `ApiDemoPage` class mixes in `AmfHelperMixin` in the class' prototype. All helper's methods are available in the class.
+
 #### Minimal example
 
 ```js
