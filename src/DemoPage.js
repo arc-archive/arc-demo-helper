@@ -43,7 +43,7 @@ export class DemoPage {
     this._toggleMainOption = this._toggleMainOption.bind(this);
 
     this.initObservableProperties([
-      'narrow', 'componentName', 'stylesActive', 'darkThemeActive'
+      'narrow', 'componentName', 'stylesActive',
     ]);
 
     /**
@@ -117,6 +117,7 @@ export class DemoPage {
     } else {
       document.body.classList.remove('dark');
     }
+    this.render();
   }
 
   /**

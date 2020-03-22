@@ -16,3 +16,4 @@ class ComponentDemo extends DemoPage {
 
 const instance = new ComponentDemo();
 instance.render();
+window.demoInstance = instance;
