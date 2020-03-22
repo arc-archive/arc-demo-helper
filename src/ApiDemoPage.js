@@ -44,11 +44,46 @@ export class ApiDemoPage extends DemoPage {
       'amf', 'hasData',
     ]);
 
-    // API navigation basic setup.
+    /**
+     * When set the endpoint section in navigation is opened by default.
+     * @type {Boolean}
+     * @default false;
+     */
     this.endpointsOpened = true;
+
+    /**
+     * When set the documentation section in navigation is opened by default.
+     * @type {Boolean}
+     * @default false;
+     */
     this.docsOpened = false;
+
+    /**
+     * When set the types section in navigation is opened by default.
+     * @type {Boolean}
+     * @default false;
+     */
     this.typesOpened = false;
+
+    /**
+     * When set the security section in navigation is opened by default.
+     * @type {Boolean}
+     * @default false;
+     */
     this.securityOpened = false;
+
+    /**
+     * AMF model read from the API model file downloaded aftwer initialization.
+     * @type {Array<Object>|Object}
+     */
+    this.amf = null;
+
+    /**
+     * A helper property that tells whether the view has AMF data.
+     * @type {Boolean}
+     * @default false;
+     */
+    this.hasData = false;
 
     window.addEventListener('api-navigation-selection-changed', this._navChanged);
 

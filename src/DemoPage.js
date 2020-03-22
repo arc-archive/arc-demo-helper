@@ -37,7 +37,6 @@ import './SharedStyles.js';
  */
 export class DemoPage {
   constructor() {
-    this.firstRendered = false;
     this._darkThemeHandler = this._darkThemeHandler.bind(this);
     this._narrowHandler = this._narrowHandler.bind(this);
     this._stylesHandler = this._stylesHandler.bind(this);
@@ -47,10 +46,48 @@ export class DemoPage {
       'narrow', 'componentName', 'stylesActive', 'darkThemeActive'
     ]);
 
-    this._narrow = false;
+    /**
+     * Whether the demoed component should be rendered in the "narrow" view
+     * @type {Boolean}
+     * @default false
+     */
+    this.narrow = false;
+
+    /**
+     * Whether view controls should be rendered in the top navigation.
+     * @type {Boolean}
+     * @default false
+     */
     this.renderViewControls = false;
-    // This is rendered in the header section
-    this._componentName = '';
+
+    /**
+     * Component name rendered in the header section.
+     * @type {String}
+     */
+    this.componentName = '';
+
+    /**
+     * Determines whether the initial render had run and the `firstRender()`
+     * function was called.
+     *
+     * @type {Boolean}
+     * @default false
+     */
+    this.firstRendered = false;
+
+    /**
+     * Whether or not the styles should be applied to `body.styled` element.
+     * @type {Boolean}
+     * @default true
+     */
+    this.stylesActive = true;
+
+    /**
+     * Whether or not the dark theme is active
+     * @type {Boolean}
+     * @default false
+     */
+    this.darkThemeActive = false;
 
     document.body.classList.add('styled');
 
@@ -141,12 +178,16 @@ export class DemoPage {
    *  return html`<p>Demo content</p>`;
    * }
    * ```
+   *
+   * @return {TemplateResult} Template to render
    */
-  contentTemplate() {}
+  contentTemplate() {
+    return html``;
+  }
 
   /**
    * Call this on the top of the `render()` method to render demo navigation
-   * @return {Object} HTML template for demo header
+   * @return {TemplateResult} HTML template for demo header
    */
   headerTemplate() {
     const { componentName } = this;
@@ -184,6 +225,13 @@ export class DemoPage {
     </anypoint-menu-button>`;
   }
 
+  /**
+   * The main render function. Sub clases should not override this method.
+   * Override `_render()` instead.
+   *
+   * The function calls `_render()` in a timeout so it is safe to call this
+   * multiple time in the same event loop.
+   */
   render() {
     if (this._rendering) {
       return;
