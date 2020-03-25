@@ -50,6 +50,11 @@ export {DemoPage};
 declare class DemoPage {
 
   /**
+   * A list of demo states to be passed to `arc-interactive-demo` element
+   */
+  demoStates: Array<String|null>|null;
+
+  /**
    * Whether the demoed component should be rendered in the "narrow" view
    */
   narrow: Boolean|null;
@@ -107,6 +112,8 @@ declare class DemoPage {
    * of `checked` property read from the event's target.
    */
   _toggleMainOption(e: Event|null): void;
+  _demoStateHandler(e: any): void;
+  _updateCompatibility(): void;
 
   /**
    * Abstract method. When not overriding `render()` method you can use
@@ -129,6 +136,14 @@ declare class DemoPage {
    */
   headerTemplate(): TemplateResult|null;
   _viewControlsTemplate(): any;
+
+  /**
+   * Override this function to add some custom custom controls to the
+   * view controls dropdown.
+   *
+   * @returns HTML template for demo header
+   */
+  _demoViewControlsTemplate(): TemplateResult|null;
 
   /**
    * The main render function. Sub clases should not override this method.

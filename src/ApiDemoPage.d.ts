@@ -73,6 +73,11 @@ declare class ApiDemoPage {
   amf: Array<object|null>|object|null;
 
   /**
+   * When set the API Navigation element won't be rendered.
+   */
+  noApiNativation: Boolean|null;
+
+  /**
    * A helper property that tells whether the view has AMF data.
    */
   hasData: Boolean|null;
@@ -118,6 +123,5 @@ declare class ApiDemoPage {
    * @returns HTML template for demo header
    */
   headerTemplate(): object|null;
-  _viewControlsTemplate(): any;
   _render(): void;
 }
