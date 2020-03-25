@@ -102,4 +102,11 @@ anypoint-tab {
 
 :host([dark]) .config-title {
   color: var(--arc-interactive-demo-header-color, #EEEEEE);
+}
+
+.icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }`;

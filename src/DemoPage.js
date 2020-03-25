@@ -41,10 +41,17 @@ export class DemoPage {
     this._narrowHandler = this._narrowHandler.bind(this);
     this._stylesHandler = this._stylesHandler.bind(this);
     this._toggleMainOption = this._toggleMainOption.bind(this);
+    this._demoStateHandler = this._demoStateHandler.bind(this);
 
     this.initObservableProperties([
-      'narrow', 'componentName', 'stylesActive',
+      'narrow', 'componentName', 'stylesActive', 'compatibility',
     ]);
+
+    /**
+     * A list of demo states to be passed to `arc-interactive-demo` element
+     * @type {Array<String>}
+     */
+    this.demoStates = ['Material', 'Anypoint'];
 
     /**
      * Whether the demoed component should be rendered in the "narrow" view
@@ -181,6 +188,20 @@ export class DemoPage {
     this[name] = checked;
   }
 
+  _demoStateHandler(e) {
+    const { value } = e.detail;
+    this.compatibility = value === 1;
+    this._updateCompatibility();
+  }
+
+  _updateCompatibility() {
+    if (this.compatibility) {
+      document.body.classList.add('anypoint');
+    } else {
+      document.body.classList.remove('anypoint');
+    }
+  }
+
   /**
    * Abstract method. When not overriding `render()` method you can use
    * this function to render content inside the standar API components layout.
@@ -233,8 +254,18 @@ export class DemoPage {
         <div class="settings-action-item">
           <anypoint-switch checked @change="${this._stylesHandler}">Toggle styles</anypoint-switch>
         </div>
+        ${this._demoViewControlsTemplate()}
       </div>
     </anypoint-menu-button>`;
+  }
+
+  /**
+   * Override this function to add some custom custom controls to the
+   * view controls dropdown.
+   * @return {TemplateResult} HTML template for demo header
+   */
+  _demoViewControlsTemplate() {
+    return '';
   }
 
   /**

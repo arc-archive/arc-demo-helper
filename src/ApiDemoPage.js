@@ -4,7 +4,6 @@ import '@anypoint-web-components/anypoint-dropdown-menu/anypoint-dropdown-menu.j
 import '@anypoint-web-components/anypoint-listbox/anypoint-listbox.js';
 import '@anypoint-web-components/anypoint-item/anypoint-item.js';
 import '@api-components/api-navigation/api-navigation.js';
-import { settings } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@api-components/raml-aware/raml-aware.js';
 import { DemoPage } from './DemoPage.js';
 import './ApiStyles.js';
@@ -122,9 +121,12 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
    * @return {Object} HTML template for apis dropdown options.
    */
   _apiListTemplate() {
-    return html`
-    <anypoint-item data-src="demo-api.json">Demo API</anypoint-item>
-    <anypoint-item data-src="demo-api-compact.json">Demo API - compact</anypoint-item>`;
+    return [
+      ['demo-api', 'Demo API'],
+    ].map(([file, label]) => html`
+      <anypoint-item data-src="${file}-compact.json">${label} - compact model</anypoint-item>
+      <anypoint-item data-src="${file}.json">${label}</anypoint-item>
+    `);
   }
 
   _apiNavigationTemplate() {
@@ -170,32 +172,6 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
       <div class="spacer"></div>
       ${this._viewControlsTemplate()}
     </header>`;
-  }
-
-  _viewControlsTemplate() {
-    if (!this.renderViewControls) {
-      return '';
-    }
-    return html`
-    <anypoint-menu-button dynamicalign>
-      <anypoint-icon-button
-        slot="dropdown-trigger"
-        aria-label="Press to toggle demo page settings menu"
-      >
-        <span class="icon">${settings}</span>
-      </anypoint-icon-button>
-      <div slot="dropdown-content">
-        <div class="settings-action-item">
-          <anypoint-switch @change="${this._darkThemeHandler}">Toggle dark theme</anypoint-switch>
-        </div>
-        <div class="settings-action-item">
-          <anypoint-switch @change="${this._narrowHandler}">Toggle narrow attribute</anypoint-switch>
-        </div>
-        <div class="settings-action-item">
-          <anypoint-switch checked @change="${this._stylesHandler}">Toggle styles</anypoint-switch>
-        </div>
-      </div>
-    </anypoint-menu-button>`;
   }
 
   _render() {

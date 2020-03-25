@@ -13,7 +13,7 @@ An element to help create demo pages for ARC components based on LitElement.
 ### Installation
 
 ```sh
-npm install --save @advanced-rest-client/arc-demo-helper
+npm install -D @advanced-rest-client/arc-demo-helper
 ```
 
 ### Building a demo page
