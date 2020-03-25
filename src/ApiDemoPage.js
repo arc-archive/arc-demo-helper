@@ -47,28 +47,28 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     /**
      * When set the endpoint section in navigation is opened by default.
      * @type {Boolean}
-     * @default false;
+     * @default false
      */
     this.endpointsOpened = true;
 
     /**
      * When set the documentation section in navigation is opened by default.
      * @type {Boolean}
-     * @default false;
+     * @default false
      */
     this.docsOpened = false;
 
     /**
      * When set the types section in navigation is opened by default.
      * @type {Boolean}
-     * @default false;
+     * @default false
      */
     this.typesOpened = false;
 
     /**
      * When set the security section in navigation is opened by default.
      * @type {Boolean}
-     * @default false;
+     * @default false
      */
     this.securityOpened = false;
 
@@ -79,9 +79,16 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     this.amf = null;
 
     /**
+     * When set the API Navigation element won't be rendered.
+     * @type {Boolean}
+     * @default false
+     */
+    this.noApiNativation = false;
+
+    /**
      * A helper property that tells whether the view has AMF data.
      * @type {Boolean}
-     * @default false;
+     * @default false
      */
     this.hasData = false;
 
@@ -130,6 +137,9 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   }
 
   _apiNavigationTemplate() {
+    if (this.noApiNativation) {
+      return '';
+    }
     return html`<api-navigation
       summary
       .amf="${this.amf}"
