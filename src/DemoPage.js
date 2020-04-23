@@ -4,6 +4,9 @@ import '@anypoint-web-components/anypoint-menu-button/anypoint-menu-button.js';
 import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
 import '@anypoint-web-components/anypoint-switch/anypoint-switch.js';
 import './SharedStyles.js';
+
+/** @typedef {import('lit-html').TemplateResult} TemplateResult */
+
 /**
  * Base class for ARC components demo page.
  *
@@ -181,13 +184,18 @@ export class DemoPage {
    * The `name` shoulds correspond to a variable name to be set. The set value is the value
    * of `checked` property read from the event's target.
    *
-   * @param {Event} e
+   * @param {CustomEvent} e
    */
   _toggleMainOption(e) {
-    const { name, checked } = e.target;
+    const { name, checked } = /** @type HTMLInputElement */ (e.target);
     this[name] = checked;
   }
 
+  /**
+   * A handler for the `change` event for the demo state
+   *
+   * @param {CustomEvent} e
+   */
   _demoStateHandler(e) {
     const { value } = e.detail;
     this.compatibility = value === 1;
@@ -200,22 +208,6 @@ export class DemoPage {
     } else {
       document.body.classList.remove('anypoint');
     }
-  }
-
-  /**
-   * Abstract method. When not overriding `render()` method you can use
-   * this function to render content inside the standar API components layout.
-   *
-   * ```
-   * contentTemplate() {
-   *  return html`<p>Demo content</p>`;
-   * }
-   * ```
-   *
-   * @return {TemplateResult} Template to render
-   */
-  contentTemplate() {
-    return html``;
   }
 
   /**
@@ -232,6 +224,9 @@ export class DemoPage {
     </header>`;
   }
 
+  /**
+   * @return {TemplateResult|string} Template for view controls
+   */
   _viewControlsTemplate() {
     if (!this.renderViewControls) {
       return '';
@@ -265,7 +260,22 @@ export class DemoPage {
    * @return {TemplateResult} HTML template for demo header
    */
   _demoViewControlsTemplate() {
-    return '';
+    return html``;
+  }
+
+  /**
+   * Abstract method. When not overriding `render()` method you can use
+   * this function to render content inside the standar API components layout.
+   *
+   * ```
+   * contentTemplate() {
+   *  return html`<p>Demo content</p>`;
+   * }
+   * ```
+   * @return {TemplateResult}
+   */
+  contentTemplate() {
+    return html``;
   }
 
   /**

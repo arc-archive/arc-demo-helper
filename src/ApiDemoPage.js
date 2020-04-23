@@ -9,6 +9,8 @@ import { DemoPage } from './DemoPage.js';
 import './ApiStyles.js';
 import './SharedStyles.js';
 
+/** @typedef {import('lit-html').TemplateResult} TemplateResult */
+
 /**
  * Base class for API components demo page.
  * It creates basic sceleton for API demo page.
@@ -33,6 +35,9 @@ import './SharedStyles.js';
  * const instance = new ApiDemo();
  * instance.render();
  * ```
+ *
+ * @extends DemoPage
+ * @mixes AmfHelperMixin
  */
 export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   constructor() {
@@ -101,11 +106,21 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
    * Sets default API selection when the view is rendered.
    */
   firstRender() {
-    document.getElementById('apiList').selected = 0;
+    const node = /** @type any */ (document.getElementById('apiList'));
+    if (!node) {
+      return;
+    }
+    node.selected = 0;
   }
 
+  /**
+   * Handler for the API selection change
+   * @param {Event} e
+   */
   _apiChanged(e) {
-    const file = e.target.selectedItem.dataset.src;
+    const target = /** @type any */ (e.target);
+    const item = /** @type HTMLElement */ (target.selectedItem);
+    const file = item.dataset.src;
     this._loadFile(file);
   }
 
@@ -125,7 +140,7 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   }
   /**
    * This method to be overriten in child class to render API options.
-   * @return {Object} HTML template for apis dropdown options.
+   * @return {Array<TemplateResult>} HTML template for apis dropdown options.
    */
   _apiListTemplate() {
     return [
@@ -136,6 +151,9 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     `);
   }
 
+  /**
+   * @return {TemplateResult|string} Template for API navigation element
+   */
   _apiNavigationTemplate() {
     if (this.noApiNativation) {
       return '';
@@ -149,20 +167,10 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
       ?securityopened="${this.securityOpened}"
     ></api-navigation>`;
   }
-  /**
-   * Abstract method. When not overriding `render()` method you can use
-   * this function to render content inside the standar API components layout.
-   *
-   * ```
-   * contentTemplate() {
-   *  return html`<p>Demo content</p>`;
-   * }
-   * ```
-   */
-  contentTemplate() {}
+  
   /**
    * Call this on the top of the `render()` method to render demo navigation
-   * @return {Object} HTML template for demo header
+   * @return {TemplateResult} HTML template for demo header
    */
   headerTemplate() {
     const { componentName } = this;
