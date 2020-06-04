@@ -168,7 +168,6 @@ export class ArcInteractiveDemo extends LitElement {
       ${states.map((item) => html`
         <anypoint-tab
           aria-label="Activate to enable state ${item}"
-          aria-controls="stateContent"
         >${item}</anypoint-tab>
       `)}
     </anypoint-tabs>`;
