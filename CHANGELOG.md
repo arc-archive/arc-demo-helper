@@ -174,3 +174,26 @@ All notable changes to this project will be documented in this file. See [standa
 * adding noApiNativation property to API demo page [beb6b89](https://github.com/advanced-rest-client/arc-demo-helper/commit/beb6b89c4eed4b12939bae137a32134edec29b70) by Pawel
 
 
+<a name="2.1.5"></a>
+## [2.1.5](https://github.com/advanced-rest-client/arc-demo-helper/compare/2.1.3...2.1.5) (2020-06-04)
+
+### Build
+
+* bumping version [4259a05](https://github.com/advanced-rest-client/arc-demo-helper/commit/4259a0546cac9245c02791f5cad23cff84c7d5e6) by Pawel
+* bumping version [d4d8cff](https://github.com/advanced-rest-client/arc-demo-helper/commit/d4d8cff58487c391edda443db38b773336166781) by Pawel
+
+
+### Update
+
+* upgradig dependencies [36c8fa9](https://github.com/advanced-rest-client/arc-demo-helper/commit/36c8fa93d50c63b4648ea76b65e40e1a109f1afc) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [c811c4a](https://github.com/advanced-rest-client/arc-demo-helper/commit/c811c4aa662908fe5916f9ed3a34a37e795c27fb) by Ci agent
+* removing automatic types generation [c226ca2](https://github.com/advanced-rest-client/arc-demo-helper/commit/c226ca21013fb44b5f2754be06b02db998e50ae7) by Pawel
+* upgrading dependencies [5fa69d7](https://github.com/advanced-rest-client/arc-demo-helper/commit/5fa69d7f02ca096dabbb042df1cb9c1bf419983a) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [e1eb7d8](https://github.com/advanced-rest-client/arc-demo-helper/commit/e1eb7d81a9d3828e8fbfbfd8bebd48e00a220e8d) by Ci agent
+
+
+### Documentation
+
+* updating Travis badge [5bbf7b8](https://github.com/advanced-rest-client/arc-demo-helper/commit/5bbf7b835e90a8197ded13b44b69cc28e0698118) by Pawel
+
+
