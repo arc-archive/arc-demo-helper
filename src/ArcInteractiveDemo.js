@@ -20,14 +20,11 @@ export class ArcInteractiveDemo extends LitElement {
       /**
        * The list of general style states for the element.
        * It renders list of tabs with labels from this array.
-       *
-       * @type {Array<String>}
        */
       states: { type: Array },
       /**
        * Currently selected state's index in the `states` array.
        * Change dispatches `state-chanegd` custom event.
-       * @type {Object}
        */
       selectedState: { type: Number },
       /**
