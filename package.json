@@ -1,65 +1,102 @@
 {
   "name": "@advanced-rest-client/arc-demo-helper",
-  "version": "2.1.5",
   "description": "An element to help create demo pages for ARC components",
+  "version": "2.2.0",
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "module": "index.js",
   "keywords": [
     "web-components",
     "advanced-rest-client",
     "api-components",
     "demo"
   ],
+  "authors": [
+    "Pawel Psztyc"
+  ],
+  "contributors": [
+    "The Advanced REST client authors <arc@mulesoft.com>"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/advanced-rest-client/arc-demo-helper.git"
   },
-  "license": "Apache-2.0",
-  "main": "index.js",
-  "module": "index.js",
-  "authors": [
-    "pawel Psztyc",
-    "The Advanced REST client authors <arc@mulesoft.com>"
-  ],
+  "bugs": {
+    "url": "https://github.com/advanced-rest-client/arc-menu/issues",
+    "email": "arc@mulesoft.com"
+  },
   "homepage": "https://github.com/advanced-rest-client/arc-demo-helper",
+  "dependencies": {
+    "@advanced-rest-client/arc-icons": "^3.1.2",
+    "@anypoint-web-components/anypoint-button": "^1.1.1",
+    "@anypoint-web-components/anypoint-dropdown-menu": "^0.1.17",
+    "@anypoint-web-components/anypoint-item": "^1.0.8",
+    "@anypoint-web-components/anypoint-listbox": "^1.1.4",
+    "@anypoint-web-components/anypoint-menu-button": "^0.1.1",
+    "@anypoint-web-components/anypoint-switch": "^0.1.4",
+    "@anypoint-web-components/anypoint-tabs": "^0.1.11",
+    "@api-components/amf-helper-mixin": "^4.1.8",
+    "@api-components/api-navigation": "^4.1.4",
+    "@api-components/raml-aware": "^3.0.0",
+    "@polymer/font-roboto": "^3.0.2",
+    "lit-element": "^2.4.0",
+    "lit-html": "^1.3.0",
+    "prismjs": "^1.21.0"
+  },
+  "devDependencies": {
+    "@api-components/api-model-generator": "^0.2.8",
+    "@open-wc/eslint-config": "^3.0.0",
+    "@open-wc/testing": "^2.5.27",
+    "@open-wc/testing-karma": "^4.0.6",
+    "deepmerge": "^4.2.2",
+    "es-dev-server": "^1.57.5",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "typescript": "^4.0.3",
+    "typescript-lit-html-plugin": "^0.9.0"
+  },
   "scripts": {
     "start": "es-dev-server --app-index demo/index.html --node-resolve --open --watch",
     "test": "karma start --coverage",
     "test:watch": "karma start --auto-watch=true --single-run=false",
-    "update-types": "gen-typescript-declarations --deleteExisting --outDir .",
     "generate-model": "node demo/model.js",
-    "prepare": "node demo/model.js"
+    "prepare": "node demo/model.js",
+    "gen:wc": "wca analyze \"*.js\" --outFile custom-elements.json"
   },
-  "dependencies": {
-    "@advanced-rest-client/arc-icons": "^3.1.0",
-    "@anypoint-web-components/anypoint-button": "^1.1.1",
-    "@anypoint-web-components/anypoint-dropdown-menu": "^0.1.15",
-    "@anypoint-web-components/anypoint-item": "^1.0.7",
-    "@anypoint-web-components/anypoint-listbox": "^1.1.1",
-    "@anypoint-web-components/anypoint-menu-button": "^0.1.1",
-    "@anypoint-web-components/anypoint-switch": "^0.1.4",
-    "@anypoint-web-components/anypoint-tabs": "^0.1.11",
-    "@api-components/amf-helper-mixin": "^4.1.5",
-    "@api-components/api-navigation": "^4.1.1",
-    "@api-components/raml-aware": "^3.0.0",
-    "@polymer/font-roboto": "^3.0.2",
-    "lit-element": "^2.3.1",
-    "lit-html": "^1.2.1",
-    "prismjs": "^1.20.0",
-    "web-animations-js": "^2.3.1"
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "demo/**/*.js",
+          "test/**/*.js",
+          "**/demo/**/*.html"
+        ],
+        "rules": {
+          "no-console": "off",
+          "no-unused-expressions": "off",
+          "no-plusplus": "off",
+          "no-param-reassing": "off",
+          "class-methods-use-this": "off",
+          "import/no-extraneous-dependencies": "off"
+        }
+      }
+    ]
   },
-  "devDependencies": {
-    "@advanced-rest-client/eslint-config": "^1.1.4",
-    "@advanced-rest-client/prettier-config": "^0.1.0",
-    "@api-components/api-model-generator": "^0.2.8",
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@open-wc/testing": "^2.5.17",
-    "@open-wc/testing-karma": "^3.4.1",
-    "@polymer/gen-typescript-declarations": "^1.6.2",
-    "deepmerge": "^4.2.2",
-    "es-dev-server": "^1.54.0",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.9",
-    "typescript-lit-html-plugin": "^0.9.0"
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.js": [

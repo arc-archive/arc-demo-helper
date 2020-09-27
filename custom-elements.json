@@ -1,0 +1,95 @@
+{
+  "version": "experimental",
+  "tags": [
+    {
+      "name": "arc-demo-helper",
+      "path": "./arc-demo-helper.js",
+      "attributes": [
+        {
+          "name": "markdown",
+          "type": "string"
+        },
+        {
+          "name": "ignoreSlotChange",
+          "type": "boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult[]"
+        },
+        {
+          "name": "markdown",
+          "attribute": "markdown",
+          "type": "string"
+        },
+        {
+          "name": "ignoreSlotChange",
+          "attribute": "ignoreSlotChange",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "arc-interactive-demo",
+      "path": "./arc-interactive-demo.js",
+      "attributes": [
+        {
+          "name": "opened",
+          "description": "True when the configuration panel is opened.",
+          "type": "boolean"
+        },
+        {
+          "name": "selectedState",
+          "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
+          "type": "number"
+        },
+        {
+          "name": "dark",
+          "description": "When set it renders the component in dark theme.",
+          "type": "boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "styles",
+          "type": "CSSResult"
+        },
+        {
+          "name": "opened",
+          "attribute": "opened",
+          "description": "True when the configuration panel is opened.",
+          "type": "boolean"
+        },
+        {
+          "name": "states",
+          "description": "The list of general style states for the element.\nIt renders list of tabs with labels from this array.",
+          "type": "string[]"
+        },
+        {
+          "name": "selectedState",
+          "attribute": "selectedState",
+          "description": "Currently selected state's index in the `states` array.\nChange dispatches `state-changed` custom event.",
+          "type": "number"
+        },
+        {
+          "name": "dark",
+          "attribute": "dark",
+          "description": "When set it renders the component in dark theme.",
+          "type": "boolean"
+        },
+        {
+          "name": "tabs",
+          "type": "AnypointTabs"
+        }
+      ],
+      "events": [
+        {
+          "name": "state-changed",
+          "description": "An event dispatched when selected demo state change"
+        }
+      ]
+    }
+  ]
+}

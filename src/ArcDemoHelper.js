@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { html, LitElement } from 'lit-element';
 import 'prismjs/prism.js';
 import 'prismjs/components/prism-markdown.min.js';
@@ -25,29 +26,22 @@ export class ArcDemoHelper extends LitElement {
     this.ignoreSlotChange = false;
   }
 
-  render() {
-    return html`
-    <div class="demo">
-      <slot id="content"></slot>
-      <div id="demoContent"></div>
-    </div>
-    <div class="code-container">
-      <code class="code"></code>
-      <button id="copyButton" title="copy to clipboard" @click="${this._copyToClipboard}">Copy</button>
-    </div>
-    `;
-  }
-
-  firstUpdated() {
-    this._firstUpdated = true;
-    this._registerSlotListener();
-  }
-
   connectedCallback() {
     super.connectedCallback();
     if (!this._firstUpdated || this.ignoreSlotChange) {
       return;
     }
+    this._registerSlotListener();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    const slot = this.shadowRoot.querySelector('#content');
+    slot.removeEventListener('slotchange', this._slotChangeHandler);
+  }
+
+  firstUpdated() {
+    this._firstUpdated = true;
     this._registerSlotListener();
   }
 
@@ -59,19 +53,13 @@ export class ArcDemoHelper extends LitElement {
     slot.addEventListener('slotchange', this._slotChangeHandler);
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    const slot = this.shadowRoot.querySelector('#content');
-    slot.removeEventListener('slotchange', this._slotChangeHandler);
-  }
-
   _slotChangeHandler() {
     this._updateContent();
   }
 
   _updateContent() {
-    const slot = this.shadowRoot.querySelector('#content');
-    const template = slot.assignedNodes().find((node) => node.nodeName === 'TEMPLATE');
+    const slot = /** @type HTMLSlotElement */ (this.shadowRoot.querySelector('#content'));
+    const template = /** @type HTMLTemplateElement */ (slot.assignedNodes().find((node) => node.nodeName === 'TEMPLATE'));
     if (!template) {
       return;
     }
@@ -89,12 +77,16 @@ export class ArcDemoHelper extends LitElement {
     this.ignoreSlotChange = true;
   }
 
+  /**
+   * @param {string} text 
+   * @returns {string}
+   */
   unindent(text) {
     if (!text) {
       return text;
     }
     const lines = text.replace(/\t/g, '  ').split('\n');
-    const indent = lines.reduce(function(prev, line) {
+    const indent = lines.reduce((prev, line) => {
       if (/^\s*$/.test(line)) {
         return prev; // Completely ignore blank lines.
       }
@@ -102,22 +94,29 @@ export class ArcDemoHelper extends LitElement {
       if (prev === null) {
         return lineIndent;
       }
+      // @ts-ignore
       return lineIndent < prev ? /* istanbul ignore next */ lineIndent : prev;
     }, null);
 
-    return lines.map((l) => l.substr(indent)).join('\n');
+    return lines.map((l) => l.substr(Number(indent))).join('\n');
   }
 
+   /**
+   * @param {string} code 
+   */
   _highlight(code) {
     /* global Prism */
+    // @ts-ignore
     const grammar = Prism.languages.markdown;
     const lang = 'markdown';
     const env = {
-      code: code,
+      code,
       grammar,
       language: lang
     };
+    // @ts-ignore
     Prism.hooks.run('before-highlight', env);
+    // @ts-ignore
     const result = Prism.highlight(code, grammar, lang);
     this.shadowRoot.querySelector('code').innerHTML = result;
   }
@@ -136,9 +135,7 @@ export class ArcDemoHelper extends LitElement {
     } catch (err) {
       // Copy command is not available
       /* istanbul ignore next: It is really hard to get here */
-      {
-        button.textContent = 'error';
-      }
+      button.textContent = 'error';
     }
 
     // Return to the copy button after a second.
@@ -150,5 +147,18 @@ export class ArcDemoHelper extends LitElement {
 
   _resetCopyButtonState() {
     this.shadowRoot.querySelector('#copyButton').textContent = 'copy';
+  }
+
+  render() {
+    return html`
+    <div class="demo">
+      <slot id="content"></slot>
+      <div id="demoContent"></div>
+    </div>
+    <div class="code-container">
+      <code class="code"></code>
+      <button id="copyButton" title="copy to clipboard" @click="${this._copyToClipboard}">Copy</button>
+    </div>
+    `;
   }
 }

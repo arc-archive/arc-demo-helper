@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { html, render } from 'lit-html';
 import { settings } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@anypoint-web-components/anypoint-menu-button/anypoint-menu-button.js';
@@ -6,6 +7,7 @@ import '@anypoint-web-components/anypoint-switch/anypoint-switch.js';
 import './SharedStyles.js';
 
 /** @typedef {import('lit-html').TemplateResult} TemplateResult */
+/** @typedef {import('@anypoint-web-components/anypoint-switch').AnypointSwitch} AnypointSwitch */
 
 /**
  * Base class for ARC components demo page.
@@ -32,7 +34,7 @@ import './SharedStyles.js';
  * Styles are set on `body.styled` element. Add any component related styles to this
  * selected as the user can choose to disable any styling from the header options.
  * In this case the class `styled` is removed from the body and the user should see
- * completely unstyled component.
+ * completely un-styled component.
  *
  * Dark theme should be supported in the demo page. Put styles related to dark theme
  * under `body.styled.dark` selector. When the user chooses this option it renders content
@@ -52,27 +54,27 @@ export class DemoPage {
 
     /**
      * A list of demo states to be passed to `arc-interactive-demo` element
-     * @type {Array<String>}
+     * @type {string[]}
      */
     this.demoStates = ['Material', 'Anypoint'];
 
     /**
      * Whether the demoed component should be rendered in the "narrow" view
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.narrow = false;
 
     /**
      * Whether view controls should be rendered in the top navigation.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.renderViewControls = false;
 
     /**
      * Component name rendered in the header section.
-     * @type {String}
+     * @type {string}
      */
     this.componentName = '';
 
@@ -80,37 +82,26 @@ export class DemoPage {
      * Determines whether the initial render had run and the `firstRender()`
      * function was called.
      *
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.firstRendered = false;
 
     /**
      * Whether or not the styles should be applied to `body.styled` element.
-     * @type {Boolean}
+     * @type {boolean}
      * @default true
      */
     this.stylesActive = true;
 
     /**
      * Whether or not the dark theme is active
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.darkThemeActive = false;
 
     document.body.classList.add('styled');
-
-    const script = document.createElement('script');
-    script.src = '../node_modules/web-animations-js/web-animations-next.min.js';
-    document.head.appendChild(script);
-  }
-
-  /**
-   * Helper function to be overriten by child classes. It is called when the view
-   * is rendered for the first time.
-   */
-  firstRender() {
   }
 
   get darkThemeActive() {
@@ -131,16 +122,23 @@ export class DemoPage {
   }
 
   /**
+   * Helper function to be overridden by child classes. It is called when the view
+   * is rendered for the first time.
+   */
+  firstRender() {
+  }
+
+  /**
    * Creates setters and getters to properties defined in the passed list of properties.
    * Property setter will trigger render function.
    *
-   * @param {Array<String>} props List of properties to initialize.
+   * @param {string[]} props List of properties to initialize.
    */
   initObservableProperties(props) {
     props.forEach((item) => {
       Object.defineProperty(this, item, {
         get() {
-          return this['_' + item];
+          return this[`_${item}`];
         },
         set(newValue) {
           this._setObservableProperty(item, newValue);
@@ -151,8 +149,12 @@ export class DemoPage {
     });
   }
 
+  /**
+   * @param {string} prop
+   * @param {any} value
+   */
   _setObservableProperty(prop, value) {
-    const key = '_' + prop;
+    const key = `_${prop}`;
     if (this[key] === value) {
       return;
     }
@@ -160,17 +162,29 @@ export class DemoPage {
     this.render();
   }
 
+  /**
+   * @param {CustomEvent} e
+   */
   _darkThemeHandler(e) {
-    this.darkThemeActive = e.target.checked;
+    const node = /** @type AnypointSwitch */ (e.target);
+    this.darkThemeActive = node.checked;
   }
 
+  /**
+   * @param {CustomEvent} e
+   */
   _narrowHandler(e) {
-    this.narrow = e.target.checked;
+    const node = /** @type AnypointSwitch */ (e.target);
+    this.narrow = node.checked;
   }
 
+  /**
+   * @param {CustomEvent} e
+   */
   _stylesHandler(e) {
-    this.stylesActive = e.target.checked;
-    if (e.target.checked) {
+    const node = /** @type AnypointSwitch */ (e.target);
+    this.stylesActive = node.checked;
+    if (node.checked) {
       document.body.classList.add('styled');
     } else {
       document.body.classList.remove('styled');
@@ -181,7 +195,7 @@ export class DemoPage {
    * A handler for the `change` event for an element that has `checked` and `name` properties.
    * This can be used with `anypoint-switch`, `anypoint-checkbox`, and `checkbox` elements.
    *
-   * The `name` shoulds correspond to a variable name to be set. The set value is the value
+   * The `name` should correspond to a variable name to be set. The set value is the value
    * of `checked` property read from the event's target.
    *
    * @param {CustomEvent} e
@@ -225,14 +239,14 @@ export class DemoPage {
   }
 
   /**
-   * @return {TemplateResult|string} Template for view controls
+   * @return {TemplateResult|string} Template for the view controls
    */
   _viewControlsTemplate() {
     if (!this.renderViewControls) {
       return '';
     }
     return html`
-    <anypoint-menu-button dynamicalign>
+    <anypoint-menu-button dynamicAlign>
       <anypoint-icon-button
         slot="dropdown-trigger"
         aria-label="Press to toggle demo page settings menu"
@@ -265,7 +279,7 @@ export class DemoPage {
 
   /**
    * Abstract method. When not overriding `render()` method you can use
-   * this function to render content inside the standar API components layout.
+   * this function to render content inside the standard API components layout.
    *
    * ```
    * contentTemplate() {
@@ -279,7 +293,7 @@ export class DemoPage {
   }
 
   /**
-   * The main render function. Sub clases should not override this method.
+   * The main render function. Sub classes should not override this method.
    * Override `_render()` instead.
    *
    * The function calls `_render()` in a timeout so it is safe to call this

@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-param-reassign */
 import { html, LitElement } from 'lit-element';
 import '@anypoint-web-components/anypoint-tabs/anypoint-tabs.js';
 import '@anypoint-web-components/anypoint-tabs/anypoint-tab.js';
@@ -5,6 +7,8 @@ import '@anypoint-web-components/anypoint-button/anypoint-button.js';
 import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
 import { close } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import styles from './ArcInteractiveStyles.js';
+
+/** @typedef {import('@anypoint-web-components/anypoint-tabs').AnypointTabs} AnypointTabs */
 
 export class ArcInteractiveDemo extends LitElement {
   static get styles() {
@@ -24,7 +28,7 @@ export class ArcInteractiveDemo extends LitElement {
       states: { type: Array },
       /**
        * Currently selected state's index in the `states` array.
-       * Change dispatches `state-chanegd` custom event.
+       * Change dispatches `state-changed` custom event.
        */
       selectedState: { type: Number },
       /**
@@ -34,6 +38,9 @@ export class ArcInteractiveDemo extends LitElement {
     };
   }
 
+  /**
+   * @returns {AnypointTabs}
+   */
   get tabs() {
     return this.shadowRoot.querySelector('anypoint-tabs');
   }
@@ -49,7 +56,7 @@ export class ArcInteractiveDemo extends LitElement {
     }
     this._selectedState = value;
     this.requestUpdate('selectedState', old);
-    this.dispatchEvent(new CustomEvent('state-chanegd', {
+    this.dispatchEvent(new CustomEvent('state-changed', {
       detail: {
         value,
         state: this.states[value]
@@ -75,7 +82,7 @@ export class ArcInteractiveDemo extends LitElement {
   constructor() {
     super();
     this.opened = false;
-    this.states = [];
+    this.states = /** string[] */ ([]);
     this.selectedState = 0;
   }
 
@@ -83,6 +90,9 @@ export class ArcInteractiveDemo extends LitElement {
     this._updateOptionsTabindex();
   }
 
+  /**
+   * @param {CustomEvent} e
+   */
   _stateChangeHandler(e) {
     this.selectedState = e.detail.value;
   }
@@ -97,30 +107,34 @@ export class ArcInteractiveDemo extends LitElement {
     }
     this._updateTabsTimer = setTimeout(() => {
       this._updateTabsTimer = undefined;
+      // @ts-ignore
       this.tabs.notifyResize();
     }, 120);
   }
 
   _updateOptionsTabindex() {
-    const slot = this.shadowRoot.querySelector('slot[name="options"]');
+    const slot = /** @type HTMLSlotElement */ (this.shadowRoot.querySelector('slot[name="options"]'));
     if (!slot) {
       return;
     }
     const nodes = slot.assignedNodes();
-    const opened = this.opened;
-    for (let i = 0, len = nodes.length; i < len; i++) {
-      const node = nodes[i];
+    const { opened } = this;
+    Array.from(nodes).forEach((node) => {
       if (node.nodeType !== Node.ELEMENT_NODE) {
-        continue;
+        return;
       }
+      const typedElement = /** @type HTMLElement */ (node);
       if (opened) {
-        this._activateOptionNode(node);
+        this._activateOptionNode(typedElement);
       } else {
-        this._deactivateOptionNode(node);
+        this._deactivateOptionNode(typedElement);
       }
-    }
+    });
   }
 
+  /**
+   * @param {HTMLElement} node
+   */
   _activateOptionNode(node) {
     const old = node.dataset.oldTabindex;
     if (!old) {
@@ -131,6 +145,9 @@ export class ArcInteractiveDemo extends LitElement {
     delete node.dataset.oldTabindex;
   }
 
+  /**
+   * @param {HTMLElement} node
+   */
   _deactivateOptionNode(node) {
     const current = node.getAttribute('tabindex');
     if (!current) {
@@ -158,7 +175,8 @@ export class ArcInteractiveDemo extends LitElement {
 
   _tabsTemplate() {
     const { states, selectedState } = this;
-    return html`<anypoint-tabs
+    return html`
+    <anypoint-tabs
       .selected="${selectedState}"
       @selected-changed="${this._stateChangeHandler}"
       aria-label="Element state selection">

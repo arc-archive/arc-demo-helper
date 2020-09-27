@@ -1,17 +1,13 @@
-// tslint:disable:variable-name Describing an API that's defined elsewhere.
-// tslint:disable:no-any describes the API as best we are able today
-
 import {TemplateResult} from 'lit-html';
-
 import {AmfHelperMixin} from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
-
 import {DemoPage} from './DemoPage.js';
 
-export {ApiDemoPage};
+export declare interface ApiDemoPage extends AmfHelperMixin, DemoPage {
+}
 
 /**
  * Base class for API components demo page.
- * It creates basic sceleton for API demo page.
+ * It creates a skeleton for an API demo page.
  *
  * Usage
  *
@@ -34,64 +30,79 @@ export {ApiDemoPage};
  * instance.render();
  * ```
  */
-declare class ApiDemoPage extends AmfHelperMixin(DemoPage) {
+export declare class ApiDemoPage {
 
   /**
    * When set the endpoint section in navigation is opened by default.
+   * @attribute
    */
-  endpointsOpened: Boolean|null;
+  endpointsOpened: boolean;
 
   /**
    * When set the documentation section in navigation is opened by default.
+   * @attribute
    */
-  docsOpened: Boolean|null;
+  docsOpened: boolean;
 
   /**
    * When set the types section in navigation is opened by default.
+   * @attribute
    */
-  typesOpened: Boolean|null;
+  typesOpened: boolean;
 
   /**
    * When set the security section in navigation is opened by default.
+   * @attribute
    */
-  securityOpened: Boolean|null;
+  securityOpened: boolean;
 
   /**
-   * AMF model read from the API model file downloaded aftwer initialization.
+   * AMF model read from the API model file downloaded after initialization.
    */
-  amf: Array<object|null>|object|null;
+  amf: any;
 
   /**
    * When set the API Navigation element won't be rendered.
+   * @attribute
    */
-  noApiNativation: Boolean|null;
+  noApiNavigation: boolean;
 
   /**
    * A helper property that tells whether the view has AMF data.
+   * @attribute
    */
-  hasData: Boolean|null;
-  constructor();
+  hasData: boolean;
 
   /**
    * Sets default API selection when the view is rendered.
    */
   firstRender(): void;
-  _apiChanged(e: Event): void;
-  _loadFile(file: any): any;
 
   /**
-   * This method to be overriten in child class to handle navigation.
-   *
+   * Handler for the API selection change
+   */
+  _apiChanged(e: Event): void;
+
+  /**
+   * @param file file name in the demo folder
+   */
+  _loadFile(file: string): Promise<void>;
+
+  /**
+   * This method to be overridden in child class to handle navigation.
    * @param e Dispatched navigation event
    */
-  _navChanged(e: CustomEvent|null): void;
+  _navChanged(e: CustomEvent): void;
 
   /**
-   * This method to be overriten in child class to render API options.
-   *
-   * @returns HTML template for apis dropdown options.
+   * This method to be overridden in child class to render API options.
+   * @return HTML template for apis dropdown options.
    */
-  _apiListTemplate(): Array<TemplateResult>;
+  _apiListTemplate(): TemplateResult[];
+
+  /**
+   * @return Template for API navigation element
+   */
   _apiNavigationTemplate(): TemplateResult|string;
 
   /**
@@ -99,6 +110,6 @@ declare class ApiDemoPage extends AmfHelperMixin(DemoPage) {
    *
    * @returns HTML template for demo header
    */
-  headerTemplate(): TemplateResult|null;
+  headerTemplate(): TemplateResult;
   _render(): void;
 }

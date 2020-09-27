@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { html, render } from 'lit-html';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import '@anypoint-web-components/anypoint-dropdown-menu/anypoint-dropdown-menu.js';
@@ -10,10 +11,11 @@ import './ApiStyles.js';
 import './SharedStyles.js';
 
 /** @typedef {import('lit-html').TemplateResult} TemplateResult */
+/** @typedef {import('@anypoint-web-components/anypoint-listbox').AnypointListbox} AnypointListbox */
 
 /**
  * Base class for API components demo page.
- * It creates basic sceleton for API demo page.
+ * It creates a skeleton for an API demo page.
  *
  * Usage
  *
@@ -35,9 +37,6 @@ import './SharedStyles.js';
  * const instance = new ApiDemo();
  * instance.render();
  * ```
- *
- * @extends DemoPage
- * @mixes AmfHelperMixin
  */
 export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   constructor() {
@@ -51,35 +50,35 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
 
     /**
      * When set the endpoint section in navigation is opened by default.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.endpointsOpened = true;
 
     /**
      * When set the documentation section in navigation is opened by default.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.docsOpened = false;
 
     /**
      * When set the types section in navigation is opened by default.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.typesOpened = false;
 
     /**
      * When set the security section in navigation is opened by default.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.securityOpened = false;
 
     /**
-     * AMF model read from the API model file downloaded aftwer initialization.
-     * @type {Array<Object>|Object}
+     * AMF model read from the API model file downloaded after initialization.
+     * @type {any}
      */
     this.amf = null;
 
@@ -88,11 +87,11 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
      * @type {Boolean}
      * @default false
      */
-    this.noApiNativation = false;
+    this.noApiNavigation = false;
 
     /**
      * A helper property that tells whether the view has AMF data.
-     * @type {Boolean}
+     * @type {boolean}
      * @default false
      */
     this.hasData = false;
@@ -118,19 +117,23 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
    * @param {Event} e
    */
   _apiChanged(e) {
-    const target = /** @type any */ (e.target);
-    const item = /** @type HTMLElement */ (target.selectedItem);
+    const node = /** @type AnypointListbox */ (e.target);
+    const item = /** @type HTMLElement */ (node.selectedItem);
     const file = item.dataset.src;
     this._loadFile(file);
   }
 
+  /**
+   * @param {string} file file name in the demo folder
+   */
   async _loadFile(file) {
-    const response = await fetch('./' + file);
+    const response = await fetch(`./${file}`);
     const data = await response.json();
     this.amf = data;
   }
+  
   /**
-   * This method to be overriten in child class to handle navigation.
+   * This method to be overridden in child class to handle navigation.
    * @param {CustomEvent} e Dispatched navigation event
    */
   _navChanged(e) {
@@ -138,9 +141,10 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     // eslint-disable-next-line no-console
     console.log(`Navigation changed. Type: ${type}, selected: ${selected}`);
   }
+
   /**
-   * This method to be overriten in child class to render API options.
-   * @return {Array<TemplateResult>} HTML template for apis dropdown options.
+   * This method to be overridden in child class to render API options.
+   * @return {TemplateResult[]} HTML template for apis dropdown options.
    */
   _apiListTemplate() {
     return [
@@ -155,16 +159,17 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
    * @return {TemplateResult|string} Template for API navigation element
    */
   _apiNavigationTemplate() {
-    if (this.noApiNativation) {
+    if (this.noApiNavigation) {
       return '';
     }
-    return html`<api-navigation
+    return html`
+    <api-navigation
       summary
       .amf="${this.amf}"
-      ?endpointsopened="${this.endpointsOpened}"
-      ?docsopened="${this.docsOpened}"
-      ?typesopened="${this.typesOpened}"
-      ?securityopened="${this.securityOpened}"
+      ?endpointsOpened="${this.endpointsOpened}"
+      ?docsOpened="${this.docsOpened}"
+      ?typesOpened="${this.typesOpened}"
+      ?securityOpened="${this.securityOpened}"
     ></api-navigation>`;
   }
   
