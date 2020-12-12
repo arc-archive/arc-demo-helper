@@ -217,3 +217,27 @@ All notable changes to this project will be documented in this file. See [standa
 * adding export and hashing logic [b2d6c62](https://github.com/advanced-rest-client/arc-demo-helper/commit/b2d6c629d54a73e0e50d7d0ab9a53294668f466b) by Pawel Psztyc
 
 
+<a name="2.2.2"></a>
+## [2.2.2](https://github.com/advanced-rest-client/arc-demo-helper/compare/2.2.0...2.2.2) (2020-12-12)
+
+### Continuous integration
+
+* adding GH actions [62f9ee9](https://github.com/advanced-rest-client/arc-demo-helper/commit/62f9ee9633f8fa0c24e14c4391effd32e1439def) by Pawel Psztyc
+
+
+### Update
+
+* [ci skip] automated merge master->stage. syncing main branches [a77f717](https://github.com/advanced-rest-client/arc-demo-helper/commit/a77f717103cd9f656d1ce0197577eede1c05a007) by Ci agent
+* moving to new test runner [4e5122f](https://github.com/advanced-rest-client/arc-demo-helper/commit/4e5122fc9fa344d604c21a55a60a59abbe723efd) by Pawel Psztyc
+
+
+### Features
+
+* adding export and hashing logic [b2d6c62](https://github.com/advanced-rest-client/arc-demo-helper/commit/b2d6c629d54a73e0e50d7d0ab9a53294668f466b) by Pawel Psztyc
+
+
+### Bug Fixes
+
+* adding missing exports [5f08c9d](https://github.com/advanced-rest-client/arc-demo-helper/commit/5f08c9d6b6a45e91718e39648749534261d1af56) by Pawel Psztyc
+
+
