@@ -197,3 +197,23 @@ All notable changes to this project will be documented in this file. See [standa
 * updating Travis badge [5bbf7b8](https://github.com/advanced-rest-client/arc-demo-helper/commit/5bbf7b835e90a8197ded13b44b69cc28e0698118) by Pawel
 
 
+<a name="2.2.1"></a>
+## [2.2.1](https://github.com/advanced-rest-client/arc-demo-helper/compare/2.1.5...2.2.1) (2020-12-12)
+
+### Continuous integration
+
+* adding GH actions [62f9ee9](https://github.com/advanced-rest-client/arc-demo-helper/commit/62f9ee9633f8fa0c24e14c4391effd32e1439def) by Pawel Psztyc
+
+
+### Update
+
+* moving to new test runner [4e5122f](https://github.com/advanced-rest-client/arc-demo-helper/commit/4e5122fc9fa344d604c21a55a60a59abbe723efd) by Pawel Psztyc
+* upgrading to latest ARC standards [f41cb1f](https://github.com/advanced-rest-client/arc-demo-helper/commit/f41cb1f48f3652908f44afdef724315086046672) by Pawel
+* [ci skip] automated merge master->stage. syncing main branches [a6697f7](https://github.com/advanced-rest-client/arc-demo-helper/commit/a6697f7f04c71ac37010d4bea6f20ebbeb583473) by Ci agent
+
+
+### Features
+
+* adding export and hashing logic [b2d6c62](https://github.com/advanced-rest-client/arc-demo-helper/commit/b2d6c629d54a73e0e50d7d0ab9a53294668f466b) by Pawel Psztyc
+
+
