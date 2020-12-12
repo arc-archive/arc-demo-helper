@@ -19,7 +19,7 @@
   },
   "include": [
     "**/*.js",
-    "node_modules/@open-wc/**/*.js"
+    "node_modules/@open-wc/**/*.js", "src/ExportHandlerMixin.d.ts", "src/EncodingHelpers.d.ts"
   ],
   "exclude": ["node_modules/!(@open-wc)"]
 }
