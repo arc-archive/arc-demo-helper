@@ -47,6 +47,7 @@ export class DemoPage {
     this._stylesHandler = this._stylesHandler.bind(this);
     this._toggleMainOption = this._toggleMainOption.bind(this);
     this._demoStateHandler = this._demoStateHandler.bind(this);
+    this._mediaQueryHandler = this._mediaQueryHandler.bind(this);
 
     this.initObservableProperties([
       'narrow', 'componentName', 'stylesActive', 'compatibility',
@@ -102,6 +103,8 @@ export class DemoPage {
     this.darkThemeActive = false;
 
     document.body.classList.add('styled');
+
+    this.initMediaQueries();
   }
 
   get darkThemeActive() {
@@ -147,6 +150,17 @@ export class DemoPage {
         configurable: true
       });
     });
+  }
+
+  /**
+   * Initializes media queries for dark system theme.
+   */
+  initMediaQueries() {
+    const matcher = window.matchMedia('(prefers-color-scheme: dark)');
+    if (matcher.matches) {
+      this.darkThemeActive = true;
+    }
+    matcher.addEventListener('change', this._mediaQueryHandler);
   }
 
   /**
@@ -222,6 +236,13 @@ export class DemoPage {
     } else {
       document.body.classList.remove('anypoint');
     }
+  }
+
+  /**
+   * @param {MediaQueryListEvent} e 
+   */
+  _mediaQueryHandler(e) {
+    this.darkThemeActive = e.matches;
   }
 
   /**

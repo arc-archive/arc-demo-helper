@@ -90,6 +90,11 @@ export declare class DemoPage {
    * @param props List of properties to initialize.
    */
   initObservableProperties(props: string[]): void;
+
+   /**
+   * Initializes media queries for dark system theme.
+   */
+  initMediaQueries(): void;
   _setObservableProperty(prop: string, value: any): void;
   _darkThemeHandler(e: CustomEvent): void;
   _narrowHandler(e: CustomEvent): void;
@@ -108,6 +113,7 @@ export declare class DemoPage {
    */
   _demoStateHandler(e: CustomEvent): void;
   _updateCompatibility(): void;
+  _mediaQueryHandler(e: MediaQueryListEvent): void;
 
   /**
    * Call this on the top of the `render()` method to render demo navigation
