@@ -45,7 +45,7 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     this._navChanged = this._navChanged.bind(this);
 
     this.initObservableProperties([
-      'amf', 'hasData',
+      'hasData',
     ]);
 
     /**
@@ -99,6 +99,15 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     window.addEventListener('api-navigation-selection-changed', this._navChanged);
 
     document.body.classList.add('api');
+  }
+
+  get amf() {
+    return super.amf;
+  }
+
+  set amf(value) {
+    super.amf = value;
+    this.render();
   }
 
   /**
