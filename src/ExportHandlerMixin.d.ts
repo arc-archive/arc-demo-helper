@@ -16,7 +16,7 @@ interface ExportHandlerMixinConstructor {
  * 
  * This components does not install some dependencies. Your project has to install them on its own:
  * - @advanced-rest-client/arc-events
- * - @advanced-rest-client/arc-ie
+ * - @advanced-rest-client/arc-models
  * - @advanced-rest-client/bottom-sheet
  */
 interface ExportHandlerMixin {

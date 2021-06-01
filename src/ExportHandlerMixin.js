@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { html } from 'lit-html';
-import '@advanced-rest-client/arc-ie/arc-data-export.js';
+import '@advanced-rest-client/arc-models/arc-data-export.js';
 import '@advanced-rest-client/bottom-sheet/bottom-sheet.js';
 import { DataExportEventTypes, GoogleDriveEventTypes } from '@advanced-rest-client/arc-events';
 // eslint-disable-next-line no-unused-vars
@@ -153,7 +153,7 @@ const mxFunction = base => {
  * 
  * This components does not install some dependencies. Your project has to install them on its own:
  * - @advanced-rest-client/arc-events
- * - @advanced-rest-client/arc-ie
+ * - @advanced-rest-client/arc-models
  * - @advanced-rest-client/bottom-sheet
  *
  * @mixin
