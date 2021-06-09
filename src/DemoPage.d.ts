@@ -150,6 +150,12 @@ export declare class DemoPage {
   contentTemplate(): TemplateResult;
 
   /**
+   * The page render function. Usually you don't need to use it.
+   * It renders the header template, main section, and the content.
+   */
+   pageTemplate(): TemplateResult;
+
+  /**
    * The main render function. Sub classes should not override this method.
    * Override `_render()` instead.
    *
