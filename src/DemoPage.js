@@ -40,13 +40,14 @@ import './SharedStyles.js';
  * under `body.styled.dark` selector. When the user chooses this option it renders content
  * in dark theme.
  */
-export class DemoPage {
+export class DemoPage extends EventTarget {
   constructor() {
-    this._darkThemeHandler = this._darkThemeHandler.bind(this);
-    this._narrowHandler = this._narrowHandler.bind(this);
-    this._stylesHandler = this._stylesHandler.bind(this);
-    this._toggleMainOption = this._toggleMainOption.bind(this);
-    this._demoStateHandler = this._demoStateHandler.bind(this);
+    super();
+    // this._darkThemeHandler = this._darkThemeHandler.bind(this);
+    // this._narrowHandler = this._narrowHandler.bind(this);
+    // this._stylesHandler = this._stylesHandler.bind(this);
+    // this._toggleMainOption = this._toggleMainOption.bind(this);
+    // this._demoStateHandler = this._demoStateHandler.bind(this);
     this._mediaQueryHandler = this._mediaQueryHandler.bind(this);
 
     this.initObservableProperties([
@@ -314,6 +315,20 @@ export class DemoPage {
   }
 
   /**
+   * The page render function. Usually you don't need to use it.
+   * It renders the header template, main section, and the content.
+   * 
+   * @return {TemplateResult}
+   */
+  pageTemplate() {
+    return html`
+    ${this.headerTemplate()}
+    <section role="main" class="vertical-section-container centered main">
+      ${this.contentTemplate()}
+    </section>`;
+  }
+
+  /**
    * The main render function. Sub classes should not override this method.
    * Override `_render()` instead.
    *
@@ -336,10 +351,8 @@ export class DemoPage {
       this.firstRendered = true;
       setTimeout(() => this.firstRender());
     }
-    render(html`
-      ${this.headerTemplate()}
-      <section role="main" class="vertical-section-container centered main">
-        ${this.contentTemplate()}
-      </section>`, document.querySelector('#demo'));
+    render(this.pageTemplate(), document.querySelector('#demo'), {
+      eventContext: this,
+    });
   }
 }
