@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { html, render } from 'lit-html';
+import { html } from 'lit-html';
 import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 import '@anypoint-web-components/anypoint-dropdown-menu/anypoint-dropdown-menu.js';
 import '@anypoint-web-components/anypoint-listbox/anypoint-listbox.js';
@@ -41,7 +41,6 @@ import './SharedStyles.js';
 export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
   constructor() {
     super();
-    this._apiChanged = this._apiChanged.bind(this);
     this._navChanged = this._navChanged.bind(this);
 
     this.initObservableProperties([
@@ -206,18 +205,20 @@ export class ApiDemoPage extends AmfHelperMixin(DemoPage) {
     </header>`;
   }
 
-  _render() {
-    if (!this.firstRendered) {
-      this.firstRendered = true;
-      setTimeout(() => this.firstRender());
-    }
-    render(html`
-      ${this.headerTemplate()}
-      <section role="main" class="horizontal-section-container centered main">
-        ${this._apiNavigationTemplate()}
-        <div class="demo-container">
-          ${this.contentTemplate()}
-        </div>
-      </section>`, document.querySelector('#demo'));
+  /**
+   * The page render function. Usually you don't need to use it.
+   * It renders the header template, main section, and the content.
+   * 
+   * @return {TemplateResult}
+   */
+  pageTemplate() {
+    return html`
+    ${this.headerTemplate()}
+    <section role="main" class="horizontal-section-container centered main">
+      ${this._apiNavigationTemplate()}
+      <div class="demo-container">
+        ${this.contentTemplate()}
+      </div>
+    </section>`;
   }
 }
