@@ -11,7 +11,7 @@ class ComponentDemo extends DemoPage {
 
   contentTemplate() {
     return html`
-      <p ?narrow="${this.narrowActive}">This is demo page for ARC components</p>
+      <p ?narrow="${this.narrow}">This is demo page for ARC components</p>
 
       <arc-demo-helper>
         <template>
@@ -27,9 +27,9 @@ class ComponentDemo extends DemoPage {
 
   _headerControlsTemplate() {
     return html`
-      ${super._headerControlsTemplate()}
+      ${super._viewControlsTemplate()}
       <div class="settings-action-item">
-        <paper-toggle-button @checked-changed="${this._otherHandler}">Other option</paper-toggle-button>
+        <anypoint-switch @checked-changed="${this._otherHandler}">Other option</anypoint-switch>
       </div>`;
   }
 }
