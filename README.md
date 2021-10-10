@@ -1,10 +1,4 @@
-[![Published on NPM](https://img.shields.io/npm/v/@advanced-rest-client/arc-demo-helper.svg)](https://www.npmjs.com/package/@advanced-rest-client/arc-demo-helper)
-
-[![Build Status](https://travis-ci.com/advanced-rest-client/arc-demo-helper.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/arc-demo-helper)
-
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/arc-demo-helper)
-
-## arc-demo-helper
+# arc-demo-helper
 
 An element to help create demo pages for ARC components based on LitElement.
 
@@ -28,7 +22,8 @@ All API Components demo pages uses the `<arc-interactive-demo>` element that cre
 
 First extend the base class, define main content template, and initialize the demo.
 
-*base-layout.html*
+A **base-layout.html**.
+
 ```html
 <!doctype html>
 <html lang="en">
@@ -45,7 +40,8 @@ First extend the base class, define main content template, and initialize the de
 </html>
 ```
 
-*base-layout.js*
+A *base-layout.js*.
+
 ```js
 import { html } from 'lit-html';
 import { DemoPage } from '../index.js';
@@ -87,10 +83,10 @@ instance.render();
 #### Basic view options
 
 By setting `renderViewControls` property you enable some basic UI controls to change the behaviour of the demo page. Basic options are:
--   Toggling dark theme
--   Toggling `narrow` property in the template
--   Toggling styles applied to the component
 
+- Toggling dark theme
+- Toggling `narrow` property in the template
+- Toggling styles applied to the component
 
 ```js
 import { html } from 'lit-html';
@@ -182,79 +178,7 @@ All variables and styles for the demo page should be applied to `body.styled` CS
 </html>
 ```
 
-### Building an API demo page
-
-To build an API related demo page use `ApiDemoPage` class as a base class for the demo page. It extends `DemoPage` class but adds additional UI and logic into it. The `ApiDemoPage` adds dropdown to select an API (demo-api by default), adds logic to load API model, adds API navigation and support for handling selection.
-
-Finally the `ApiDemoPage` class mixes in `AmfHelperMixin` in the class' prototype. All helper's methods are available in the class.
-
-#### Minimal example
-
-```js
-import { html } from 'lit-html';
-import { ApiDemoPage } from '../index.js';
-
-class ApiDemo extends ApiDemoPage {
-  constructor() {
-    super();
-    this.componentName = 'api-my-component';
-    this.renderViewControls = true;
-  }
-
-  _navChanged(e) {
-    const { selected, type } = e.detail;
-    // process selection information
-  }
-
-  contentTemplate() {
-    return html`<api-my-component>This is demo page for API components</api-my-component>`;
-  }
-}
-
-const instance = new ApiDemo();
-instance.render();
-```
-
-#### Adding API definition
-
-All APIs has to be located in `demo/` folder. By default the demo page will try to load `demo-api.json` on page load. This can be changed by extending `_apiListTemplate()` method. It should return a template of `<anypoint-item>` with `data-src` property that contains a name of a file to load.
-
-```js
-class ApiDemo extends ApiDemoPage {
-  _apiListTemplate() {
-    return html`
-    <anypoint-item data-src="my-api.json">Demo api</anypoint-item>
-    <anypoint-item data-src="my-api-compact.json">Demo api - compact version</anypoint-item>`;
-  }
-}
-```
-
-### Generating API models
-
-Use `@api-components/api-model-generator` module to generate the models using (most often) the last version of AMF.
-
-1.  Install the library as a dev dependency of the project.
-2.  Add `.json` files to Git ignored list
-    ```
-    /demo/*.json
-    !demo/apis.json
-    ```
-3.  Add [demo/model.js](model.js) file to run model generator
-4.  Add [demo/api.js](api.js) file that defines APIs to process
-5.  Add command to generate models
-    ```
-    "scripts": {
-      "prepare": "node demo/model.js"
-    }
-    ```
-
-The APIs definition file must contain a map of APIs where the key is the path to the file
-and the value is an object that defines processing options:
--   `type` (required) API type: `RAML 1.0`, `RAML 0.8`, `OAS 3.0`, `OAS 2.0`
--   `mime` (optional) API mime. Defaults to `application/yaml+raml`
--   `resolution` (optional) AMF resolution pipeline. Defaults to `editing`
-
-### arc-demo-helper
+### The helper
 
 The element allows to declaratively define a demo of an element that renders the code below the demo area.
 This element should not be used any more. Please, upgrade to `arc-interactive-demo` element with combination with the demo page.
@@ -278,9 +202,9 @@ This element should not be used any more. Please, upgrade to `arc-interactive-de
 
 An element that renders demo content in predefined layout with a support for configuration options.
 
-Pass `states` which is an Array<String> that contains a list of available general UI states of the element. In API Components it is usually Material Design's Filled and Outlined UI and Anypoint's UI.
+Pass `states` which is an `Array<String>` that contains a list of available general UI states of the element. In API Components it is usually Material Design's Filled and Outlined UI and Anypoint's UI.
 The `selectedState` sets selected state. This property is not required as the element keeps it's own internal state.
-The application should handle `state-chanegd` event and update the UI according to user selection.
+The application should handle `state-changed` event and update the UI according to user selection.
 
 The main demo content element must include `slot="content"` attribute to be distributed in the correct place.
 
@@ -290,7 +214,7 @@ Elements with `slot="options"` attribute are rendered in the options drawer.
 <arc-interactive-demo
   .states="${demoStates}"
   .selectedState="${demoState}"
-  @state-chanegd="${this._demoStateHandler}"
+  @state-changed="${this._demoStateHandler}"
   ?dark="${darkThemeActive}"
 >
   <!-- Main content -->
@@ -326,6 +250,7 @@ npm start
 ```
 
 ### Running the tests
+
 ```sh
 npm test
 ```
