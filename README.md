@@ -219,7 +219,7 @@ Elements with `slot="options"` attribute are rendered in the options drawer.
 >
   <!-- Main content -->
   <my-component
-    ?compatibility="${compatibility}"
+    ?anypoint="${anypoint}"
     ?outlined="${outlined}"
     slot="content"
   ></my-component>

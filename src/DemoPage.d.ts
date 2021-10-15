@@ -75,6 +75,16 @@ export declare class DemoPage {
    * @attribute
    */
   darkThemeActive: boolean;
+  /**
+   * Enables Anypoint platform styles.
+   * @default false
+   */
+  anypoint: boolean;
+  /**
+   * Enables Anypoint platform styles.
+   * @deprecated Use `anypoint` instead.
+   */
+  compatibility: boolean;
   constructor();
 
   /**
@@ -112,7 +122,14 @@ export declare class DemoPage {
    * A handler for the `change` event for the demo state
    */
   _demoStateHandler(e: CustomEvent): void;
+  /**
+   * @deprecated Use `_updateAnypoint` instead.
+   */
   _updateCompatibility(): void;
+  /**
+   * Depending on the `anypoint` flag state it adds or removes the `anypoint` styles from the body.
+   */
+  _updateAnypoint(): void;
   _mediaQueryHandler(e: MediaQueryListEvent): void;
 
   /**

@@ -1,7 +1,7 @@
 {
   "name": "@advanced-rest-client/arc-demo-helper",
   "description": "An element to help create demo pages for ARC components",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "license": "Apache-2.0",
   "main": "index.js",
   "module": "index.js",
@@ -54,13 +54,13 @@
     "@open-wc/eslint-config": "^4.3.0",
     "@open-wc/testing": "^2.5.33",
     "@web/dev-server": "^0.1.25",
-    "@web/test-runner": "^0.13.18",
+    "@web/test-runner": "^0.13.19",
     "@web/test-runner-playwright": "^0.8.8",
-    "eslint": "^8.0.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.2",
-    "lint-staged": "^11.2.2",
-    "typescript": "^4.4.3",
+    "lint-staged": "^11.2.3",
+    "typescript": "^4.4.4",
     "typescript-lit-html-plugin": "^0.9.0"
   },
   "scripts": {

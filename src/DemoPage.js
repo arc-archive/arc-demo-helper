@@ -51,7 +51,7 @@ export class DemoPage extends EventTarget {
     this._mediaQueryHandler = this._mediaQueryHandler.bind(this);
 
     this.initObservableProperties([
-      'narrow', 'componentName', 'stylesActive', 'compatibility',
+      'narrow', 'componentName', 'stylesActive', 'anypoint',
     ]);
 
     /**
@@ -103,9 +103,31 @@ export class DemoPage extends EventTarget {
      */
     this.darkThemeActive = false;
 
+    /**
+     * Enables Anypoint platform styles.
+     * @type {boolean}
+     * @default false
+     */
+    this.anypoint = false;
+
     document.body.classList.add('styled');
 
     this.initMediaQueries();
+  }
+
+  /**
+   * @deprecated
+   */
+  get compatibility() {
+    return this.anypoint;
+  }
+
+  /**
+   * @param {boolean} value
+   * @deprecated
+   */
+  set compatibility(value) {
+    this.anypoint = value;
   }
 
   get darkThemeActive() {
@@ -227,12 +249,22 @@ export class DemoPage extends EventTarget {
    */
   _demoStateHandler(e) {
     const { value } = e.detail;
-    this.compatibility = value === 1;
-    this._updateCompatibility();
+    this.anypoint = value === 1;
+    this._updateAnypoint();
   }
 
+  /**
+   * @deprecated Use `_updateAnypoint` instead.
+   */
   _updateCompatibility() {
-    if (this.compatibility) {
+    this._updateAnypoint();
+  }
+
+  /**
+   * Depending on the `anypoint` flag state it adds or removes the `anypoint` styles from the body.
+   */
+  _updateAnypoint() {
+    if (this.anypoint) {
       document.body.classList.add('anypoint');
     } else {
       document.body.classList.remove('anypoint');
