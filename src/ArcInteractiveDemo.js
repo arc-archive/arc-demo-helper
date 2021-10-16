@@ -1,14 +1,14 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-param-reassign */
 import { html, LitElement } from 'lit-element';
-import '@anypoint-web-components/anypoint-tabs/anypoint-tabs.js';
-import '@anypoint-web-components/anypoint-tabs/anypoint-tab.js';
-import '@anypoint-web-components/anypoint-button/anypoint-button.js';
-import '@anypoint-web-components/anypoint-button/anypoint-icon-button.js';
+import '@anypoint-web-components/awc/anypoint-tabs.js';
+import '@anypoint-web-components/awc/anypoint-tab.js';
+import '@anypoint-web-components/awc/anypoint-button.js';
+import '@anypoint-web-components/awc/anypoint-icon-button.js';
 import { close } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import styles from './ArcInteractiveStyles.js';
 
-/** @typedef {import('@anypoint-web-components/anypoint-tabs').AnypointTabs} AnypointTabs */
+/** @typedef {import('@anypoint-web-components/awc').AnypointTabsElement} AnypointTabs */
 
 export class ArcInteractiveDemo extends LitElement {
   static get styles() {
@@ -178,7 +178,7 @@ export class ArcInteractiveDemo extends LitElement {
     return html`
     <anypoint-tabs
       .selected="${selectedState}"
-      @selected-changed="${this._stateChangeHandler}"
+      @selectedchange="${this._stateChangeHandler}"
       aria-label="Element state selection">
       ${states.map((item) => html`
         <anypoint-tab

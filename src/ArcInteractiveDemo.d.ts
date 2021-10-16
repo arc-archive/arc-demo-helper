@@ -1,4 +1,4 @@
-import { AnypointTabs } from '@anypoint-web-components/anypoint-tabs';
+import { AnypointTabsElement } from '@anypoint-web-components/awc';
 import {TemplateResult, CSSResult, LitElement} from 'lit-element';
 
 export {ArcInteractiveDemo};
@@ -31,7 +31,7 @@ declare class ArcInteractiveDemo extends LitElement {
    */
   dark: boolean;
   
-  readonly tabs: AnypointTabs;
+  readonly tabs: AnypointTabsElement;
   _updateTabsTimer: number;
   
   constructor();
