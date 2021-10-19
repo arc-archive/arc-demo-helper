@@ -1,9 +1,9 @@
 /* eslint-disable class-methods-use-this */
 import { html, render } from 'lit-html';
-import { settings } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@anypoint-web-components/awc/anypoint-menu-button.js';
 import '@anypoint-web-components/awc/anypoint-icon-button.js';
 import '@anypoint-web-components/awc/anypoint-switch.js';
+import { settings } from './Icons.js';
 import './SharedStyles.js';
 
 /** @typedef {import('lit-html').TemplateResult} TemplateResult */

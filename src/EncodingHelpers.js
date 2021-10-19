@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-import { EncryptionEventTypes } from "@advanced-rest-client/arc-events";
+import { EncryptionEventTypes } from "@advanced-rest-client/events";
 
-/** @typedef {import('@advanced-rest-client/arc-events').ArcDecryptEvent} ArcDecryptEvent */
-/** @typedef {import('@advanced-rest-client/arc-events').ArcEncryptEvent} ArcEncryptEvent */
+/** @typedef {import('@advanced-rest-client/events').ArcDecryptEvent} ArcDecryptEvent */
+/** @typedef {import('@advanced-rest-client/events').ArcEncryptEvent} ArcEncryptEvent */
 
 async function encodeAes(data, passphrase) {
   // see https://gist.github.com/chrisveness/43bcda93af9f646d083fad678071b90a

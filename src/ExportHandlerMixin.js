@@ -1,14 +1,14 @@
 /* eslint-disable class-methods-use-this */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { html } from 'lit-html';
-import '@advanced-rest-client/arc-models/arc-data-export.js';
-import '@advanced-rest-client/bottom-sheet/bottom-sheet.js';
-import { DataExportEventTypes, GoogleDriveEventTypes } from '@advanced-rest-client/arc-events';
+// import '@advanced-rest-client/arc-models/arc-data-export.js';
+import '@anypoint-web-components/awc/bottom-sheet.js';
+import { DataExportEventTypes, GoogleDriveEventTypes } from '@advanced-rest-client/events';
 // eslint-disable-next-line no-unused-vars
 import { DemoPage } from './DemoPage.js';
 
-/** @typedef {import('@advanced-rest-client/arc-events').ArcExportFilesystemEvent} ArcExportFilesystemEvent */
-/** @typedef {import('@advanced-rest-client/arc-events').GoogleDriveSaveEvent} GoogleDriveSaveEvent */
+/** @typedef {import('@advanced-rest-client/events').ArcExportFilesystemEvent} ArcExportFilesystemEvent */
+/** @typedef {import('@advanced-rest-client/events').GoogleDriveSaveEvent} GoogleDriveSaveEvent */
 
 /**
  * @param {typeof DemoPage} base

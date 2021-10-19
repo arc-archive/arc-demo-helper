@@ -1,4 +1,4 @@
-import { ArcDecryptEvent, ArcEncryptEvent } from "@advanced-rest-client/arc-events";
+import { ArcDecryptEvent, ArcEncryptEvent } from "@advanced-rest-client/events";
 
 declare function encodeAes(data: string, passphrase: string): Promise<string>;
 

@@ -5,7 +5,7 @@ import '@anypoint-web-components/awc/anypoint-tabs.js';
 import '@anypoint-web-components/awc/anypoint-tab.js';
 import '@anypoint-web-components/awc/anypoint-button.js';
 import '@anypoint-web-components/awc/anypoint-icon-button.js';
-import { close } from '@advanced-rest-client/arc-icons/ArcIcons.js';
+import { close } from './Icons.js';
 import styles from './ArcInteractiveStyles.js';
 
 /** @typedef {import('@anypoint-web-components/awc').AnypointTabsElement} AnypointTabs */
