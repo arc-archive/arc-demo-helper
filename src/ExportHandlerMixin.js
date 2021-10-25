@@ -128,7 +128,6 @@ const mxFunction = base => {
     exportTemplate() {
       const { exportSheetOpened, exportFile, exportData } = this;
       return html`
-      <arc-data-export appVersion="demo-page"></arc-data-export>
       <bottom-sheet
         .opened="${exportSheetOpened}"
         @closed="${this._exportOpenedChanged}">

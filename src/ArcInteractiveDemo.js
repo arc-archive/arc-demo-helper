@@ -8,7 +8,7 @@ import '@anypoint-web-components/awc/anypoint-icon-button.js';
 import { close } from './Icons.js';
 import styles from './ArcInteractiveStyles.js';
 
-/** @typedef {import('@anypoint-web-components/awc').AnypointTabsElement} AnypointTabs */
+/** @typedef {import('@anypoint-web-components/awc').AnypointTabsElement} AnypointTabsElement */
 
 export class ArcInteractiveDemo extends LitElement {
   static get styles() {
@@ -34,12 +34,16 @@ export class ArcInteractiveDemo extends LitElement {
       /**
        * When set it renders the component in dark theme.
        */
-      dark: { type: Boolean, reflect: true }
+      dark: { type: Boolean, reflect: true },
+      /**
+       * To be set when the "options" should not be rendered.
+       */
+      noOptions: { type: Boolean, reflect: true },
     };
   }
 
   /**
-   * @returns {AnypointTabs}
+   * @returns {AnypointTabsElement}
    */
   get tabs() {
     return this.shadowRoot.querySelector('anypoint-tabs');
@@ -82,6 +86,7 @@ export class ArcInteractiveDemo extends LitElement {
   constructor() {
     super();
     this.opened = false;
+    this.noOptions = false;
     this.states = /** string[] */ ([]);
     this.selectedState = 0;
   }
@@ -91,10 +96,10 @@ export class ArcInteractiveDemo extends LitElement {
   }
 
   /**
-   * @param {CustomEvent} e
+   * @param {Event} e
    */
   _stateChangeHandler(e) {
-    this.selectedState = e.detail.value;
+    this.selectedState = /** @type AnypointTabsElement */ (e.target).selected;
   }
 
   _toggleOptions() {
@@ -189,7 +194,10 @@ export class ArcInteractiveDemo extends LitElement {
   }
 
   _triggerTemplate() {
-    const { opened } = this;
+    const { opened, noOptions } = this;
+    if (noOptions) {
+      return '';
+    }
     return html`<anypoint-button
       ?hidden=${opened}
       @click="${this._toggleOptions}"
@@ -200,7 +208,10 @@ export class ArcInteractiveDemo extends LitElement {
   }
 
   _configTemplate() {
-    const { opened } = this;
+    const { opened, noOptions } = this;
+    if (noOptions) {
+      return '';
+    }
     const klass = opened ? 'opened' : '';
     const hdn = opened ? 'false' : 'true';
     return html`

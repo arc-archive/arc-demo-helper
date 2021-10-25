@@ -31,8 +31,13 @@ declare class ArcInteractiveDemo extends LitElement {
    */
   dark: boolean;
   
-  readonly tabs: AnypointTabsElement;
+  get tabs(): AnypointTabsElement;
   _updateTabsTimer: number;
+  /**
+   * To be set when the "options" should not be rendered.
+   * @attribute
+   */
+  noOptions: boolean;
   
   constructor();
   firstUpdated(): void;
