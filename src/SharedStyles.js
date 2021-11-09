@@ -11,32 +11,12 @@ html {
 body {
   font-family: 'Roboto', 'Noto', sans-serif;
   font-size: 15px;
-  margin: 0;
-  padding: 24px;
-  background-color: #fafafa;
-  color: #5f6368;
 }
 
-body.styled {
+.styled {
   margin: 0;
   padding: 0;
-  background-color: #fff;
   height: 100vh;
-  --primary-color: #000000;
-  --accent-color: rgb(33, 150, 243);
-  --dark-divider-opacity: 0.12;
-  --arc-font-body1-font-size: 14px;
-  --arc-font-body1-font-weight: 400;
-  --arc-font-body1-line-height: 20px;
-  --arc-font-code-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
-  --code-background-color: #f5f7f9;
-  --anypoiont-menu-button-dropdown-background: #fff;
-  --anypoint-listbox-background-color: #fff;
-  --anypoint-item-focused-background-color: #f5f5f5;
-  --anypoint-item-before-background: transparent;
-  --anypoiont-dropdown-shaddow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
-  --primary-color: #3F51B5;
-  --anypoint-color-primary: var(--primary-color);
 }
 
 .horizontal-section-container {
@@ -98,20 +78,7 @@ header h1 {
   box-sizing: border-box;
 }
 
-body.styled.dark {
-  background-color: #424242;
-  height: 100vh;
-  color: #fff;
-  --primary-color: #2196f3;
-  --primary-text-color: #fff;
-  --paper-toggle-button-label-color: #fff;
-  --primary-background-color: #424242;
-  --secondary-text-color: #616161;
-  --arc-interactive-demo-options-color: #F5F5F5;
-  --error-color: #FF5722;
-}
-
-body.styled.dark arc-demo-helper {
+.styled.dark arc-demo-helper {
   --arc-demo-helper-code-container-background-color: #263238;
   --code-background-color: #263238;
   --code-type-boolean-value-color: #F07178;
@@ -122,16 +89,16 @@ body.styled.dark arc-demo-helper {
   --arc-demo-helper-demo-background-color: #263238;
 }
 
-body.styled.dark .card {
+.styled.dark .card {
   background-color: #424242;
 }
 
-body.styled.dark header {
+.styled.dark header {
   background-color: #212121;
   color: #fff;
 }
 
-body.styled.dark .settings-action-item {
+.styled.dark .settings-action-item {
   background-color: #212121;
 }
 
@@ -160,9 +127,9 @@ h4 {
   margin: 0 0 8px;
 }
 
-body.styled.dark h2,
-body.styled.dark h3,
-body.styled.dark h4 {
+.styled.dark h2,
+.styled.dark h3,
+.styled.dark h4 {
   color: #F5F5F5;
 }
 

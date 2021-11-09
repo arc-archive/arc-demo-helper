@@ -111,10 +111,10 @@ const instance = new ComponentDemo();
 instance.render();
 ```
 
-The **dark theme** should be applied by setting up styles for `body.styled.dark` CSS selector.
+The **dark theme** should be applied by setting up styles for `.styled.dark` CSS selector.
 
 ```css
-body.styled.dark {
+.styled.dark {
   ...
 }
 ```
@@ -152,7 +152,7 @@ class ComponentDemo extends DemoPage {
 
 #### Styling the demo
 
-All variables and styles for the demo page should be applied to `body.styled` CSS selector or its children. This way it is easy to switch between demo-styled and un-styled element view. The demo base class has some basic styling included with it. You can overwrite them by setting own CSS in the demo HTML template.
+All variables and styles for the demo page should be applied to `.styled` CSS selector or its children. This way it is easy to switch between demo-styled and un-styled element view. The demo base class has some basic styling included with it. You can overwrite them by setting own CSS in the demo HTML template.
 
 ```html
 <!doctype html>
@@ -162,10 +162,10 @@ All variables and styles for the demo page should be applied to `body.styled` CS
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <title>Base layout</title>
     <style>
-    body.styled {
+    .styled {
       --primary-color: blue;
     }
-    body.styled.dark {
+    .styled.dark {
       --primary-color: white;
     }
     </style>

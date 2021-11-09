@@ -31,13 +31,13 @@ import './SharedStyles.js';
  *
  * ## Working with styles.
  *
- * Styles are set on `body.styled` element. Add any component related styles to this
+ * Styles are set on `.styled` element. Add any component related styles to this
  * selected as the user can choose to disable any styling from the header options.
  * In this case the class `styled` is removed from the body and the user should see
  * completely un-styled component.
  *
  * Dark theme should be supported in the demo page. Put styles related to dark theme
- * under `body.styled.dark` selector. When the user chooses this option it renders content
+ * under `.styled.dark` selector. When the user chooses this option it renders content
  * in dark theme.
  */
 export class DemoPage extends EventTarget {
@@ -90,7 +90,7 @@ export class DemoPage extends EventTarget {
     this.firstRendered = false;
 
     /**
-     * Whether or not the styles should be applied to `body.styled` element.
+     * Whether or not the styles should be applied to `.styled` element.
      * @type {boolean}
      * @default true
      */
