@@ -45,6 +45,8 @@
     "@web/dev-server": "^0.1.25",
     "@web/test-runner": "^0.13.20",
     "@web/test-runner-playwright": "^0.8.8",
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
     "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
@@ -56,7 +58,8 @@
     "start": "web-dev-server --app-index demo/index.html --node-resolve --open --watch --root-dir .",
     "test": "web-test-runner test/**/*.test.js --coverage --node-resolve --playwright --browsers chromium firefox webkit",
     "test:watch": "web-test-runner test/**/*.test.js --node-resolve --watch --playwright --browsers chromium",
-    "gen:wc": "wca analyze \"*.js\" --outFile custom-elements.json"
+    "gen:wc": "wca analyze \"*.js\" --outFile custom-elements.json",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
