@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { EncryptionEventTypes } from "@advanced-rest-client/events";
+import { EventTypes } from "@advanced-rest-client/events";
 
 /** @typedef {import('@advanced-rest-client/events').ArcDecryptEvent} ArcDecryptEvent */
 /** @typedef {import('@advanced-rest-client/events').ArcEncryptEvent} ArcEncryptEvent */
@@ -77,6 +77,6 @@ function encodeHandler(e) {
 }
 
 export default function listen() {
-  window.addEventListener(EncryptionEventTypes.decrypt, decodeHandler);
-  window.addEventListener(EncryptionEventTypes.encrypt, encodeHandler);
+  window.addEventListener(EventTypes.Encryption.decrypt, decodeHandler);
+  window.addEventListener(EventTypes.Encryption.encrypt, encodeHandler);
 }

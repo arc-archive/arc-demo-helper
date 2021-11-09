@@ -1,5 +1,5 @@
 import { TemplateResult } from "lit-html";
-import { ArcExportFilesystemEvent, GoogleDriveSaveEvent } from '@advanced-rest-client/arc-events';
+import { ArcExportFilesystemEvent, GoogleDriveSaveEvent } from '@advanced-rest-client/events';
 
 declare function ExportHandlerMixin<T extends new (...args: any[]) => {}>(base: T): T & ExportHandlerMixinConstructor;
 interface ExportHandlerMixinConstructor {

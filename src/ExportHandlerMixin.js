@@ -1,9 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { dedupeMixin } from '@open-wc/dedupe-mixin';
 import { html } from 'lit-html';
-// import '@advanced-rest-client/arc-models/arc-data-export.js';
 import '@anypoint-web-components/awc/bottom-sheet.js';
-import { DataExportEventTypes, GoogleDriveEventTypes } from '@advanced-rest-client/events';
+import { EventTypes } from '@advanced-rest-client/events';
 // eslint-disable-next-line no-unused-vars
 import { DemoPage } from './DemoPage.js';
 
@@ -40,8 +39,8 @@ const mxFunction = base => {
        */
       this.exportDownloadFile = false;
 
-      window.addEventListener(DataExportEventTypes.fileSave, this._fileExportHandler.bind(this));
-      window.addEventListener(GoogleDriveEventTypes.save, this._driveExportHandler.bind(this));
+      window.addEventListener(EventTypes.DataExport.fileSave, this._fileExportHandler.bind(this));
+      window.addEventListener(EventTypes.Google.Drive.save, this._driveExportHandler.bind(this));
 
       this._exportOpenedChanged = this._exportOpenedChanged.bind(this);
     }
